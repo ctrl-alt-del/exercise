@@ -1,0 +1,35 @@
+# Built application files
+*.apk
+*.ap_
+
+# Files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+
+# OSX files
+.DS_Store
+
+# Eclipse project files
+.metadata/
+.settings/
+.classpath
+.project
+.properties
+
+# Ignore gradle files
+.gradle/
+build/
+
+# Libraries on libs folder
+libs/
+
+# Except libs/android-support-v13.jar
+!libs/android-support-v4.jar
+!libs/android-support-v7-appcompat.jar
+!libs/android-support-v13.jar
