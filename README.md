@@ -3,11 +3,13 @@ HT Exercise
 This is an exercise to use Google Place API through Retrofit REST Client and other libraries.
 
 ## Development Environment
-| Item                  | Spec               |
-| :-------------------- | :----------------- |
-| Operating System      | Mac OS X 10.9.5    |
-| Processor             | 1.8 GHz Interl i5  |
-| Memory                | 8 GB 1600MHz DDR3  |
+| Item                  | Value                  |
+| :-------------------- | :--------------------- |
+| Operating System      | Mac OS X 10.9.5        |
+| Processor             | 1.8 GHz Interl i5      |
+| Memory                | 8 GB 1600MHz DDR3      |
+| IDE                   | Eclipse Luna 4.4.1     |
+| Test Device           | Samsung GS4 with 4.4.2 |
 
 
 ## Setup
