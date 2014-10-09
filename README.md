@@ -29,3 +29,6 @@ In order to use some of the libraries that are introduced in this exercise, you 
 ### Android Developer Tool (ADT) Plugin
 Make sure the ADT Plugin for Eclipse is up to date.  This is very important, otherwise, the IDE may not load the project properly.
 
+## Standard Iconography
+You can get the standard icons for different device from [here](http://developer.android.com/design/style/iconography.html).
+In this exercise, we will use the standard search icons that are available in [this zip](http://commondatastorage.googleapis.com/androiddevelopers/design/Android_Design_Icons_20131106.zip).
