@@ -1,8 +1,6 @@
 package com.htexercise;
 
 import retrofit.http.GET;
-import retrofit.http.Header;
-import retrofit.http.Path;
 import retrofit.http.Query;
 import retrofit.Callback;
 
