@@ -3,7 +3,7 @@ package com.htexercise.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Place {
+public class PlaceAutocomplete {
 
     private List<Prediction> predictions = new ArrayList<Prediction>();
     private String status;

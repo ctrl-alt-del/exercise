@@ -6,7 +6,7 @@ import retrofit.Callback;
 
 import java.util.List;
 
-import com.htexercise.model.Place;
+import com.htexercise.model.PlaceAutocomplete;
 
 public interface PlaceAPIs {
 
@@ -24,7 +24,7 @@ public interface PlaceAPIs {
 	void getPlaceAutocompletes(
 			@Query("key") String apiKey, 
 			@Query("input") String text, 
-			Callback<List<Place>> callback);
+			Callback<List<PlaceAutocomplete>> callback);
 
 	/**
 	 * Method to get details of a place through Google Place API
@@ -39,7 +39,7 @@ public interface PlaceAPIs {
 	void getPlaceDetails(
 			@Query("key") String apiKey, 
 			@Query("placeid") long placeId, 
-			Callback<List<Place>> callback);
+			Callback<List<PlaceAutocomplete>> callback);
 
 
 }
