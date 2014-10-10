@@ -27,15 +27,17 @@ public class SearchActivity extends Activity {
 
 		switch (item.getItemId()) {
 		case R.id.action_settings:
+			Toast.makeText(this, "Setting is click..", Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.action_search:
 			Toast.makeText(this, "Search is click..", Toast.LENGTH_SHORT).show();
-			break;
+//			break;
+			return true;
 		default:
 			break;
 		}
-
-		return super.onOptionsItemSelected(item);
+return true;
+//		return super.onOptionsItemSelected(item);
 	}
 
 }
