@@ -11,12 +11,13 @@ import java.util.List;
 import com.htexercise.model.Place;
 
 public interface PlaceAPIs {
-	
+
 	/**
-	 * Method to get listings through API
+	 * Method to get autocompletes of a given substring of a place through Google
+	 * Place API
 	 * 
-	 * @param limit the number of items to retrieve
-	 * @param offset the offset
+	 * @param key Google API key
+	 * @param input the substring of a place
 	 * @param callback the async call back
 	 * 
 	 * @version 1.0
@@ -28,10 +29,10 @@ public interface PlaceAPIs {
 			Callback<List<Place>> callback);
 
 	/**
-	 * Method to get vehicles of a user through API
+	 * Method to get details of a place through Google Place API
 	 * 
-	 * @param user_id the user_id
-	 * @param authorization the token with "Token " append in front of it
+	 * @param key Google API key
+	 * @param placeid the id of a place
 	 * @param callback the async call back
 	 * 
 	 * @version 1.0
