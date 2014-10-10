@@ -4,7 +4,7 @@ import retrofit.RestAdapter;
 
 public class ApiClient {
 
-	private static final String API_ENDPOINT = "";
+	private static final String API_ENDPOINT = "https://maps.googleapis.com/maps/api";
 	private static PlaceAPIs sTwitchTvService;
 
     public static PlaceAPIs getApiClient() {
