@@ -11,6 +11,10 @@ This is an exercise to use Google Place API through Retrofit REST Client and oth
 | IDE                   | Eclipse Luna 4.4.1     |
 | Test Device           | Samsung GS4 with 4.4.2 |
 
+## Naming Convention
+* `lowerCamelCase` is used for naming Java methods and variables
+* `CamelCase` is used for naming Java classes
+* `snake_case` is used for naming XML files and variables
 
 ## Setup
 ### Android SDK
