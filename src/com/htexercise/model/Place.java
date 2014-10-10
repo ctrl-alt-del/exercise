@@ -1,10 +1,9 @@
-
-package com.htexercise;
+package com.htexercise.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Places {
+public class Place {
 
     private List<Prediction> predictions = new ArrayList<Prediction>();
     private String status;
