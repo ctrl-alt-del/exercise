@@ -21,9 +21,11 @@ public interface PlaceAPIs {
 	 * 
 	 * @version 1.0
 	 * */
-	@GET("/")
-    void getListings(@Query("limit") int limit, @Query("offset") int offset, Callback<List<Place>> callback);
-
+	@GET("/place/autocomplete/json")
+	void getPlaceAutocompletes(
+			@Query("key") String apiKey, 
+			@Query("input") String text, 
+			Callback<List<Place>> callback);
 
 	/**
 	 * Method to get vehicles of a user through API
@@ -34,8 +36,11 @@ public interface PlaceAPIs {
 	 * 
 	 * @version 1.0
 	 * */
-	@GET("/")
-    void getVehicles(@Path("user_id") long user_id, @Header("authorization") String authorization, Callback<List<Place>> callback);
+	@GET("/place/details/json")
+	void getPlaceDetails(
+			@Query("key") String apiKey, 
+			@Query("placeid") long placeId, 
+			Callback<List<Place>> callback);
 
-	
+
 }
