@@ -1,5 +1,4 @@
-
-package com.htexercise;
+package com.htexercise.model;
 
 import java.util.ArrayList;
 import java.util.List;

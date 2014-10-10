@@ -1,5 +1,4 @@
-
-package com.htexercise;
+package com.htexercise.model;
 
 public class MatchedSubstring {
 
