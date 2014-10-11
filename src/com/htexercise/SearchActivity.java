@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.htexercise.presenter.PlaceAutocompleteAdapter;
+import com.htexercise.view.SearchActivityView;
 
 import android.app.Activity;
 import android.app.SearchManager;
@@ -16,7 +17,7 @@ import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
 
-public class SearchActivity extends Activity {
+public class SearchActivity extends Activity implements SearchActivityView {
 
 	private ListView placeAutocompletesListView;
 	private PlaceAutocompleteAdapter placeAutocompletesAdapter;
@@ -31,6 +32,7 @@ public class SearchActivity extends Activity {
 		this.placeAutocompletesAdapter = new PlaceAutocompleteAdapter(this, placeAutocompletes);
 		this.placeAutocompletesListView = (ListView) findViewById(R.id.place_autocomplete_listview);
 		this.placeAutocompletesListView.setAdapter(this.placeAutocompletesAdapter);
+		hideListView();
 
 	}
 
@@ -60,9 +62,11 @@ public class SearchActivity extends Activity {
 				 * */
 				if (query.length() == 0) {
 					searchView.setQueryHint("Enter your place here");
+					hideListView();
 					return true;
 				}
 				
+				showListView();
 				/**
 				 * Selecting an item that already on the list 
 				 * */
@@ -112,6 +116,18 @@ public class SearchActivity extends Activity {
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+
+	@Override
+	public void showListView() {
+		this.placeAutocompletesListView.setVisibility(View.VISIBLE);
+	}
+
+
+	@Override
+	public void hideListView() {
+		this.placeAutocompletesListView.setVisibility(View.INVISIBLE);
 	}
 
 	
