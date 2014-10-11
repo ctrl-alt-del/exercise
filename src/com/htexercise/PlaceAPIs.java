@@ -4,9 +4,8 @@ import retrofit.http.GET;
 import retrofit.http.Query;
 import retrofit.Callback;
 
-import java.util.List;
-
 import com.htexercise.model.PlaceAutocomplete;
+import com.htexercise.model.PlaceDetail;
 
 public interface PlaceAPIs {
 
@@ -38,8 +37,8 @@ public interface PlaceAPIs {
 	@GET("/place/details/json")
 	void getPlaceDetails(
 			@Query("key") String apiKey, 
-			@Query("placeid") long placeId, 
-			Callback<List<PlaceAutocomplete>> callback);
+			@Query("placeid") String placeId, 
+			Callback<PlaceDetail> callback);
 
 
 }
