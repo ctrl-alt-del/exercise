@@ -3,15 +3,24 @@ package com.htexercise;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.htexercise.model.BundleExtraConstant;
+import com.htexercise.model.PlaceAutocomplete;
+import com.htexercise.model.Prediction;
 import com.htexercise.presenter.PlaceAutocompleteAdapter;
 import com.htexercise.view.SearchActivityView;
 
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
@@ -23,12 +32,14 @@ public class SearchActivity extends Activity implements SearchActivityView {
 	private PlaceAutocompleteAdapter placeAutocompletesAdapter;
 	private List<String> placeAutocompletes = new LinkedList<String>();
 	private SearchView searchView;
+	private Activity activity;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
 
+		this.activity = this;
 		this.placeAutocompletesAdapter = new PlaceAutocompleteAdapter(this, placeAutocompletes);
 		this.placeAutocompletesListView = (ListView) findViewById(R.id.place_autocomplete_listview);
 		this.placeAutocompletesListView.setAdapter(this.placeAutocompletesAdapter);
@@ -91,8 +102,31 @@ public class SearchActivity extends Activity implements SearchActivityView {
 			@Override
 			public boolean onQueryTextSubmit(String query) {
 				
-				Toast.makeText(getBaseContext(), "onQueryTextSubmit -> " + query, Toast.LENGTH_SHORT).show();
+				/**
+				 * Ignore user action on submitting empty query.
+				 * */
+				if (StringUtils.isBlank(query)) {
+					Toast.makeText(getBaseContext(), "type something maybe?", Toast.LENGTH_SHORT).show();
+					return true;
+				}
+				
+				
 				searchView.setQuery("--> " + query, false);
+				
+				if (placeAutocompletes != null && placeAutocompletes.size() > 0) {
+					placeAutocompletes.get(0);
+					
+//					Toast.makeText(getBaseContext(), "onQueryTextSubmit -> " + query, Toast.LENGTH_SHORT).show();
+					
+					// get the place_id of the first item on the autocomplete list and make API request
+					
+					Toast.makeText(activity, BundleExtraConstant.PLACE_DETAILS.getDesc() + " <===", Toast.LENGTH_SHORT).show();
+					Intent placeDetialsIntent = new Intent(activity, PlaceDetailsActivity.class);
+					placeDetialsIntent.putExtra(BundleExtraConstant.PLACE_DETAILS.getDesc(), query);
+					activity.startActivity(placeDetialsIntent);
+				}
+				
+				
 				return true;
 			} 
 
