@@ -28,6 +28,8 @@
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:text="Address"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:textSize="16sp" />
 
             <TextView
@@ -39,6 +41,7 @@
                 android:layout_marginTop="5sp"
                 android:gravity="center"
                 android:text="Location"
+                android:textColor="@color/silver"
                 android:textSize="12sp" />
 
             <TextView
@@ -50,6 +53,7 @@
                 android:layout_marginTop="5sp"
                 android:gravity="center"
                 android:text="Place ID"
+                android:textColor="@color/silver"
                 android:textSize="10sp" />
 
             <Button
@@ -61,6 +65,7 @@
                 android:layout_marginTop="5sp"
                 android:gravity="center"
                 android:textColor="@color/white"
+                android:background="@color/transparent"
                 android:text="Cancel" />
         </RelativeLayout>
 
