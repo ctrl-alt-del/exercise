@@ -54,9 +54,23 @@ public class SearchActivity extends Activity {
 			@Override 
 			public boolean onQueryTextChange(String query) {
 				
+				/**
+				 * When the search widget is first clicked, update the hint on 
+				 * the widget to tell users what to do
+				 * */
 				if (query.length() == 0) {
 					searchView.setQueryHint("Enter your place here");
-				} else if (query.length() > 1 && textCount < 2) {
+					return true;
+				}
+				
+				/**
+				 * Selecting an item that already on the list 
+				 * */
+				if (placeAutocompletes.contains(query)) {
+					return true;
+				}
+				
+				if (query.length() > 1 && textCount < 2) {
 					// Not trigger API call
 					textCount++;
 					Toast.makeText(getBaseContext(), "onQueryTextChange -> " + query, Toast.LENGTH_SHORT).show();
@@ -68,7 +82,6 @@ public class SearchActivity extends Activity {
 				}
 				
 				return true; 
-
 			}
 
 			@Override
@@ -81,14 +94,10 @@ public class SearchActivity extends Activity {
 
 		});
 	    
-	    
-	    // Assumes current activity is the searchable activity
 	    searchView.setQueryRefinementEnabled(true);
 	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-//	    searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
 
-
-		return true;
+	    return true;
 	}
 
 
