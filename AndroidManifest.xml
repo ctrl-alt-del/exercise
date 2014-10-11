@@ -30,6 +30,17 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
+         <activity
+            android:name=".PlaceDetailsActivity"
+            android:label="PlaceDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PopupTheme" >
+            <intent-filter>
+                <action android:name="com.htexercise.PlaceDetailsActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
