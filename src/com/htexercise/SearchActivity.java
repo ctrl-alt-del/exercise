@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 import com.htexercise.model.BundleExtraConstant;
 import com.htexercise.model.PlaceAutocomplete;
 import com.htexercise.model.Prediction;
@@ -30,7 +32,7 @@ public class SearchActivity extends Activity implements SearchActivityView {
 
 	private ListView placeAutocompletesListView;
 	private PlaceAutocompleteAdapter placeAutocompletesAdapter;
-	private List<String> placeAutocompletes = new LinkedList<String>();
+	private List<Prediction> placeAutocompletes = new LinkedList<Prediction>();
 	private SearchView searchView;
 	private Activity activity;
 
@@ -98,14 +100,41 @@ public class SearchActivity extends Activity implements SearchActivityView {
 					return true;
 				}
 				
-				if (query.length() > 1 && textCount < 2) {
+				/**
+				 * textCount determines how frequent an API call should be fired
+				 * and the StringUtils.isBlank(query) make sure that it won't 
+				 * request for an API call with empty, "", " " query
+				 * */
+				if (StringUtils.isBlank(query) || textCount < 2) {
 					// Not trigger API call
 					textCount++;
-					Toast.makeText(getBaseContext(), "onQueryTextChange -> " + query, Toast.LENGTH_SHORT).show();
+//					Toast.makeText(getBaseContext(), "onQueryTextChange -> " + query, Toast.LENGTH_SHORT).show();
 				} else {
 					// Trigger API call
-					placeAutocompletes.add(query);
-					placeAutocompletesAdapter.notifyDataSetChanged();
+					
+					String apiKey = "";
+					ApiClient.getApiClient().getPlaceAutocompletes(apiKey, query, new Callback<PlaceAutocomplete>() {
+
+						@Override
+						public void failure(RetrofitError retrofitError) {
+//							Toast.makeText(getBaseContext(), "Connection Issue, please try again", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getBaseContext(), retrofitError.getMessage(), Toast.LENGTH_LONG).show();
+						}
+
+						@Override
+						public void success(PlaceAutocomplete placeAutocomplete,
+								Response response) {
+							
+							placeAutocompletes.clear();
+							for (Prediction prediction : placeAutocomplete.getPredictions()) {
+								placeAutocompletes.add(prediction);
+							}
+							
+							placeAutocompletesAdapter.notifyDataSetChanged();
+						}
+						
+					});
+					
 					textCount = 0;
 				}
 				
