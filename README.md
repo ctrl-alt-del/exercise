@@ -37,6 +37,11 @@ When user clicks on the suggestion, the text on search widget will be changed to
 When user first click on the search widget, its hint will show a message suggesting what user should type.
 
 
+## Issues encountered
+NullPointerException
+java.lang.ClassNotFoundException
+
+
 ## Appendix A: Development Environment and Conventions
 ### Development Environment
 | Item                  | Value                  |
