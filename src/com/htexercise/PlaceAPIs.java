@@ -24,7 +24,7 @@ public interface PlaceAPIs {
 	void getPlaceAutocompletes(
 			@Query("key") String apiKey, 
 			@Query("input") String text, 
-			Callback<List<PlaceAutocomplete>> callback);
+			Callback<PlaceAutocomplete> callback);
 
 	/**
 	 * Method to get details of a place through Google Place API
