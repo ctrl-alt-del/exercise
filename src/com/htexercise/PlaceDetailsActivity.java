@@ -1,5 +1,9 @@
 package com.htexercise;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.htexercise.model.BundleExtraConstant;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -20,7 +24,7 @@ public class PlaceDetailsActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_place_details);
 
-		getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
 		this.address = (TextView) this.findViewById(R.id.place_details_address);
 		this.location = (TextView) this.findViewById(R.id.place_details_location);
@@ -28,6 +32,15 @@ public class PlaceDetailsActivity extends Activity implements OnClickListener {
 		this.cancel = (Button) this.findViewById(R.id.place_details_cancel);
 		
 		this.cancel.setOnClickListener(this);
+		
+		Bundle extras = getIntent().getExtras();
+		  if (extras != null) {
+		   String place= extras.getString(BundleExtraConstant.PLACE_DETAILS.getDesc());
+		   if (!StringUtils.isBlank(place)) {
+		       this.address.setText(place);
+		   }        
+		}
+		
 	}
 
 	@Override
