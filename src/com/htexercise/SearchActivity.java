@@ -34,7 +34,7 @@ public class SearchActivity extends Activity {
 
 	}
 
-
+	private int textCount = 0;
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -54,10 +54,16 @@ public class SearchActivity extends Activity {
 			@Override 
 			public boolean onQueryTextChange(String query) {
 				
-				placeAutocompletes.add(query);
-				placeAutocompletesAdapter.notifyDataSetChanged();
-				
-				Toast.makeText(getBaseContext(), "onQueryTextChange -> " + query, Toast.LENGTH_SHORT).show();
+				if (query.length() > 1 && textCount < 2) {
+					// Not trigger API call
+					textCount++;
+					Toast.makeText(getBaseContext(), "onQueryTextChange -> " + query, Toast.LENGTH_SHORT).show();
+				} else {
+					// Trigger API call
+					placeAutocompletes.add(query);
+					placeAutocompletesAdapter.notifyDataSetChanged();
+					textCount = 0;
+				}
 				
 				return true; 
 
