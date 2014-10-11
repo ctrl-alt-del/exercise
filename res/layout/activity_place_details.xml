@@ -1,35 +1,67 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="300sp"
     tools:context="com.htexercise.PlaceDetailsActivity" >
 
-    <TextView
-        android:id="@+id/place_details_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_alignParentTop="true"
-        android:text="Address" />
+        <ImageView
+            android:id="@+id/place_details_image"
+            android:layout_width="match_parent"
+            android:layout_height="280sp"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/ic_launcher"
+            android:scaleType="centerInside" />
 
-    <TextView
-        android:id="@+id/place_details_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_below="@+id/place_details_address"
-        android:layout_marginTop="5sp"
-        android:text="Location" />
-    
-    <TextView
-        android:id="@+id/place_details_place_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_below="@+id/place_details_location"
-        android:layout_marginTop="5sp"
-        android:text="Place Id" />
-    
-    
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2sp"
+            android:background="@drawable/transparent_dark_gradient_90" >
+
+            <TextView
+                android:id="@+id/place_details_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="Address"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/place_details_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/place_details_address"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5sp"
+                android:gravity="center"
+                android:text="Location"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/place_details_place_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/place_details_location"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5sp"
+                android:gravity="center"
+                android:text="Place ID"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/place_details_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/place_details_place_id"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5sp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="Cancel" />
+        </RelativeLayout>
 
 </RelativeLayout>
