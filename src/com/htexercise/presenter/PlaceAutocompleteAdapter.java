@@ -2,9 +2,12 @@ package com.htexercise.presenter;
 
 import java.util.List;
 
+import com.htexercise.PlaceDetailsActivity;
 import com.htexercise.R;
+import com.htexercise.model.BundleExtraConstant;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -70,6 +73,13 @@ public class PlaceAutocompleteAdapter extends BaseAdapter implements SearchPrese
 				if (searchView != null) {
 					searchView.setQuery(place, false);
 				} 
+				// make API request
+				
+				
+				Toast.makeText(activity, BundleExtraConstant.PLACE_DETAILS.getDesc() + " <===", Toast.LENGTH_SHORT).show();
+				Intent placeDetialsIntent = new Intent(activity, PlaceDetailsActivity.class);
+				placeDetialsIntent.putExtra(BundleExtraConstant.PLACE_DETAILS.getDesc(), place);
+				activity.startActivity(placeDetialsIntent);
 			}
 		});
 
