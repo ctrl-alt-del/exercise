@@ -5,6 +5,7 @@ import java.util.List;
 import com.htexercise.PlaceDetailsActivity;
 import com.htexercise.R;
 import com.htexercise.model.BundleExtraConstant;
+import com.htexercise.model.Prediction;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,12 +19,12 @@ import android.widget.Toast;
 public class PlaceAutocompleteAdapter extends BaseAdapter implements SearchPresenter {
 
 	Activity activity;
-	List<String> places;
+	List<Prediction> predictions;
 	private SearchView searchView;
 
-	public PlaceAutocompleteAdapter(Activity activity, List<String> places) {
+	public PlaceAutocompleteAdapter(Activity activity, List<Prediction> predictions) {
 		this.activity = activity;
-		this.places = places;
+		this.predictions = predictions;
 	}
 	
 	@Override
@@ -33,12 +34,12 @@ public class PlaceAutocompleteAdapter extends BaseAdapter implements SearchPrese
 
 	@Override
 	public int getCount() {
-		return this.places.size();
+		return this.predictions.size();
 	}
 
 	@Override
-	public String getItem(int position) {
-		return this.places.get(position);
+	public Prediction getItem(int position) {
+		return this.predictions.get(position);
 	}
 
 	@Override
@@ -49,7 +50,7 @@ public class PlaceAutocompleteAdapter extends BaseAdapter implements SearchPrese
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
-		final String place = this.getItem(position);
+		final Prediction prediction = this.getItem(position);
 
 		PlaceAutocompleteRowViewHolder holder;
 		if (convertView == null) {
@@ -64,21 +65,21 @@ public class PlaceAutocompleteAdapter extends BaseAdapter implements SearchPrese
 			holder = (PlaceAutocompleteRowViewHolder) convertView.getTag();
 		}
 
-		holder.description.setText(place);
+		holder.description.setText(prediction.getDescription());
 		
 		holder.description.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(activity, place + " is clicked...", Toast.LENGTH_SHORT).show();
+				Toast.makeText(activity, prediction.getDescription() + " is clicked...", Toast.LENGTH_SHORT).show();
 				if (searchView != null) {
-					searchView.setQuery(place, false);
+					searchView.setQuery(prediction.getDescription(), false);
 				} 
-				// make API request
+				// make API request with prediction.getPlaceId()
 				
 				
 				Toast.makeText(activity, BundleExtraConstant.PLACE_DETAILS.getDesc() + " <===", Toast.LENGTH_SHORT).show();
 				Intent placeDetialsIntent = new Intent(activity, PlaceDetailsActivity.class);
-				placeDetialsIntent.putExtra(BundleExtraConstant.PLACE_DETAILS.getDesc(), place);
+				placeDetialsIntent.putExtra(BundleExtraConstant.PLACE_DETAILS.getDesc(), prediction.getDescription());
 				activity.startActivity(placeDetialsIntent);
 			}
 		});
