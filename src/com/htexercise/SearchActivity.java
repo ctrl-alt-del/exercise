@@ -10,8 +10,11 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 import com.htexercise.model.BundleExtraConstant;
+import com.htexercise.model.Location;
 import com.htexercise.model.PlaceAutocomplete;
+import com.htexercise.model.PlaceDetail;
 import com.htexercise.model.Prediction;
+import com.htexercise.model.Result;
 import com.htexercise.presenter.PlaceAutocompleteAdapter;
 import com.htexercise.view.SearchActivityView;
 
@@ -112,7 +115,7 @@ public class SearchActivity extends Activity implements SearchActivityView {
 				} else {
 					// Trigger API call
 					
-					String apiKey = "";
+					String apiKey = activity.getResources().getString(R.string.API_KEY);
 					ApiClient.getApiClient().getPlaceAutocompletes(apiKey, query, new Callback<PlaceAutocomplete>() {
 
 						@Override
@@ -156,16 +159,43 @@ public class SearchActivity extends Activity implements SearchActivityView {
 				searchView.setQuery("--> " + query, false);
 				
 				if (placeAutocompletes != null && placeAutocompletes.size() > 0) {
-					placeAutocompletes.get(0);
-					
-//					Toast.makeText(getBaseContext(), "onQueryTextSubmit -> " + query, Toast.LENGTH_SHORT).show();
 					
 					// get the place_id of the first item on the autocomplete list and make API request
+					Prediction prediction = placeAutocompletes.get(0);
+					String apiKey = activity.getResources().getString(R.string.API_KEY);
 					
-					Toast.makeText(activity, BundleExtraConstant.PLACE_DETAILS.getDesc() + " <===", Toast.LENGTH_SHORT).show();
-					Intent placeDetialsIntent = new Intent(activity, PlaceDetailsActivity.class);
-					placeDetialsIntent.putExtra(BundleExtraConstant.PLACE_DETAILS.getDesc(), query);
-					activity.startActivity(placeDetialsIntent);
+					ApiClient.getApiClient().getPlaceDetails(apiKey, prediction.getPlaceId(), new Callback<PlaceDetail>() {
+
+						@Override
+						public void failure(RetrofitError retrofitError) {
+//							Toast.makeText(getBaseContext(), "Connection Issue, please try again", Toast.LENGTH_SHORT).show();
+							Toast.makeText(activity, retrofitError.getMessage(), Toast.LENGTH_LONG).show();
+						}
+
+						@Override
+						public void success(PlaceDetail placeDetail,
+								Response response) {
+							
+							Result result = placeDetail.getResult();
+							
+							Intent placeDetialsIntent = new Intent(activity, PlaceDetailsActivity.class);
+							placeDetialsIntent.putExtra(
+									BundleExtraConstant.PLACE_DETAILS_FORMATTED_ADDRESS.getDesc(), 
+									result.getFormattedAddress());
+							
+							placeDetialsIntent.putExtra(
+									BundleExtraConstant.PLACE_DETAILS_PLACE_ID.getDesc(), 
+									result.getPlaceId());
+							
+							Location location = result.getGeometry().getLocation();
+							placeDetialsIntent.putExtra(
+									BundleExtraConstant.PLACE_DETAILS_LOCATION.getDesc(), 
+									"Lat: " + location.getLat() + ", Lng: " + location.getLng());
+							
+							activity.startActivity(placeDetialsIntent);
+						}
+						
+					});
 				}
 				
 				

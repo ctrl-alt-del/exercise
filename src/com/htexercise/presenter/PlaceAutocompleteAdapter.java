@@ -2,10 +2,19 @@ package com.htexercise.presenter;
 
 import java.util.List;
 
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
+import com.htexercise.ApiClient;
 import com.htexercise.PlaceDetailsActivity;
 import com.htexercise.R;
 import com.htexercise.model.BundleExtraConstant;
+import com.htexercise.model.Location;
+import com.htexercise.model.PlaceAutocomplete;
+import com.htexercise.model.PlaceDetail;
 import com.htexercise.model.Prediction;
+import com.htexercise.model.Result;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -77,10 +86,39 @@ public class PlaceAutocompleteAdapter extends BaseAdapter implements SearchPrese
 				// make API request with prediction.getPlaceId()
 				
 				
-				Toast.makeText(activity, BundleExtraConstant.PLACE_DETAILS.getDesc() + " <===", Toast.LENGTH_SHORT).show();
-				Intent placeDetialsIntent = new Intent(activity, PlaceDetailsActivity.class);
-				placeDetialsIntent.putExtra(BundleExtraConstant.PLACE_DETAILS.getDesc(), prediction.getDescription());
-				activity.startActivity(placeDetialsIntent);
+				String apiKey = activity.getResources().getString(R.string.API_KEY);
+				ApiClient.getApiClient().getPlaceDetails(apiKey, prediction.getPlaceId(), new Callback<PlaceDetail>() {
+
+					@Override
+					public void failure(RetrofitError retrofitError) {
+//						Toast.makeText(getBaseContext(), "Connection Issue, please try again", Toast.LENGTH_SHORT).show();
+						Toast.makeText(activity, retrofitError.getMessage(), Toast.LENGTH_LONG).show();
+					}
+
+					@Override
+					public void success(PlaceDetail placeDetail,
+							Response response) {
+						
+						Result result = placeDetail.getResult();
+						
+						Intent placeDetialsIntent = new Intent(activity, PlaceDetailsActivity.class);
+						placeDetialsIntent.putExtra(
+								BundleExtraConstant.PLACE_DETAILS_FORMATTED_ADDRESS.getDesc(), 
+								result.getFormattedAddress());
+						
+						placeDetialsIntent.putExtra(
+								BundleExtraConstant.PLACE_DETAILS_PLACE_ID.getDesc(), 
+								result.getPlaceId());
+						
+						Location location = result.getGeometry().getLocation();
+						placeDetialsIntent.putExtra(
+								BundleExtraConstant.PLACE_DETAILS_LOCATION.getDesc(), 
+								"Lat: " + location.getLat() + ", Lng: " + location.getLng());
+						
+						activity.startActivity(placeDetialsIntent);
+					}
+					
+				});
 			}
 		});
 
