@@ -54,7 +54,9 @@ public class SearchActivity extends Activity {
 			@Override 
 			public boolean onQueryTextChange(String query) {
 				
-				if (query.length() > 1 && textCount < 2) {
+				if (query.length() == 0) {
+					searchView.setQueryHint("Enter your place here");
+				} else if (query.length() > 1 && textCount < 2) {
 					// Not trigger API call
 					textCount++;
 					Toast.makeText(getBaseContext(), "onQueryTextChange -> " + query, Toast.LENGTH_SHORT).show();
