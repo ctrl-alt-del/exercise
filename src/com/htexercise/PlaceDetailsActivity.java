@@ -35,7 +35,7 @@ public class PlaceDetailsActivity extends Activity implements OnClickListener {
 		
 		Bundle extras = getIntent().getExtras();
 		  if (extras != null) {
-		   String place= extras.getString(BundleExtraConstant.PLACE_DETAILS.getDesc());
+		   String place= extras.getString(BundleExtraConstant.PLACE_DETAILS_FORMATTED_ADDRESS.getDesc());
 		   if (!StringUtils.isBlank(place)) {
 		       this.address.setText(place);
 		   }        
