@@ -6,6 +6,7 @@ This is an exercise to use Google Place API through Retrofit REST Client and oth
 Before starting a project, I tend to think about how it would fit into the project management triangle, namely the scope, cost, and time.
 
 It comes down to several questions:
+
 1. **What am I coding?**
 <br>
 Namely, the requirements.  In this case, I am coding an app that has ActionBar, use SearchView, and interact with Google Place Autocomplete and Place Details APIs.
@@ -26,6 +27,14 @@ few hours after work on 3 weekdays, 1 Saturday and 0.5 Sunday, where sums up app
 <br>
 Any helps, references and libraries that I can find online.
 
+## Coding Style
+To keep code easier to read, I avoid using large if else if statement by keeping if blocks small.
+
+
+## Improve user experience
+When user clicks on the suggestion, the text on search widget will be changed to it accordingly
+
+When user first click on the search widget, its hint will show a message suggesting what user should type.
 
 
 ## Appendix A: Development Environment and Conventions
