@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 public class PlaceDetailsActivity extends Activity implements OnClickListener {
 
-	private TextView address;
-	private TextView location;
-	private TextView placeId;
+	private TextView addressTextView;
+	private TextView locationTextView;
+	private TextView placeIdTextView;
 	private Button cancel;
 
 	@Override
@@ -26,21 +26,30 @@ public class PlaceDetailsActivity extends Activity implements OnClickListener {
 
 		getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
-		this.address = (TextView) this.findViewById(R.id.place_details_address);
-		this.location = (TextView) this.findViewById(R.id.place_details_location);
-		this.placeId = (TextView) this.findViewById(R.id.place_details_place_id);
+		this.addressTextView = (TextView) this.findViewById(R.id.place_details_address);
+		this.locationTextView = (TextView) this.findViewById(R.id.place_details_location);
+		this.placeIdTextView = (TextView) this.findViewById(R.id.place_details_place_id);
 		this.cancel = (Button) this.findViewById(R.id.place_details_cancel);
 		
 		this.cancel.setOnClickListener(this);
 		
 		Bundle extras = getIntent().getExtras();
 		  if (extras != null) {
-		   String place= extras.getString(BundleExtraConstant.PLACE_DETAILS_FORMATTED_ADDRESS.getDesc());
-		   if (!StringUtils.isBlank(place)) {
-		       this.address.setText(place);
+		   String address= extras.getString(BundleExtraConstant.PLACE_DETAILS_FORMATTED_ADDRESS.getDesc());
+		   if (!StringUtils.isBlank(address)) {
+		       this.addressTextView.setText(address);
 		   }        
+		   
+		   String location= extras.getString(BundleExtraConstant.PLACE_DETAILS_LOCATION.getDesc());
+		   if (!StringUtils.isBlank(location)) {
+		       this.locationTextView.setText(location);
+		   }      
+		   
+		   String placeId= extras.getString(BundleExtraConstant.PLACE_DETAILS_PLACE_ID.getDesc());
+		   if (!StringUtils.isBlank(placeId)) {
+		       this.placeIdTextView.setText(placeId);
+		   }      
 		}
-		
 	}
 
 	@Override
