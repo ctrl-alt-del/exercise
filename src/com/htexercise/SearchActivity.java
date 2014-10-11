@@ -1,41 +1,88 @@
 package com.htexercise;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import com.htexercise.presenter.PlaceAutocompleteAdapter;
+
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
 
 public class SearchActivity extends Activity {
+
+	private ListView placeAutocompletesListView;
+	private PlaceAutocompleteAdapter placeAutocompletesAdapter;
+	private List<String> placeAutocompletes = new LinkedList<String>();
+	private SearchView searchView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
 
-		LinkedList<String> places = new LinkedList<String>();
-		places.add("San Francisco");
-		places.add("New York");
+		this.placeAutocompletesAdapter = new PlaceAutocompleteAdapter(this, placeAutocompletes);
+		this.placeAutocompletesListView = (ListView) findViewById(R.id.place_autocomplete_listview);
+		this.placeAutocompletesListView.setAdapter(this.placeAutocompletesAdapter);
 
-		final ActionBar actionBar = getActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-		actionBar.setListNavigationCallbacks(
-				new PlaceAdapter(this, places), 
-				new ActionBar.OnNavigationListener() {
-					@Override
-					public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-						Toast.makeText(getBaseContext(), "An item is selected...", Toast.LENGTH_SHORT).show();
-						return true;
-					}
-				});
 	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.search, menu);
+
+		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		
+		/**
+		 * Only works on SDK 11 or higher 
+		 * */
+	    this.searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+	    
+	    this.placeAutocompletesAdapter.setSearchView(searchView);
+	    
+	    searchView.setOnQueryTextListener(new OnQueryTextListener() { 
+
+			@Override 
+			public boolean onQueryTextChange(String query) {
+				
+				placeAutocompletes.add(query);
+				placeAutocompletesAdapter.notifyDataSetChanged();
+				
+				Toast.makeText(getBaseContext(), "onQueryTextChange -> " + query, Toast.LENGTH_SHORT).show();
+				
+				return true; 
+
+			}
+
+			@Override
+			public boolean onQueryTextSubmit(String query) {
+				
+				Toast.makeText(getBaseContext(), "onQueryTextSubmit -> " + query, Toast.LENGTH_SHORT).show();
+				searchView.setQuery("--> " + query, false);
+				return true;
+			} 
+
+		});
+	    
+	    
+	    // Assumes current activity is the searchable activity
+	    searchView.setQueryRefinementEnabled(true);
+	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+//	    searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+
+
 		return true;
 	}
+
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -44,15 +91,11 @@ public class SearchActivity extends Activity {
 		case R.id.action_settings:
 			Toast.makeText(this, "Setting is click..", Toast.LENGTH_SHORT).show();
 			return true;
-		case R.id.action_search:
-			Toast.makeText(this, "Search is click..", Toast.LENGTH_SHORT).show();
-//			break;
-			return true;
 		default:
 			break;
 		}
-return true;
-//		return super.onOptionsItemSelected(item);
+		return super.onOptionsItemSelected(item);
 	}
 
+	
 }
