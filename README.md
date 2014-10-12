@@ -75,7 +75,11 @@ This error came to me when I refactor some class names, yet the AndroidManifest.
 <br>
 Declare the permission in AndroidManifest.xml solves it.
 
-4. **API call failure due to varies reasons (401, 404, 500)**
+4. **Missing Network State Access Permission**
+<br>
+Declare the permission in AndroidManifest.xml solves it.
+
+5. **API call failure due to varies reasons (401, 404, 500 and etc)**
 <br>
 Use the failure() method of Retrofit and display a message to ask the user to try again later.
 
@@ -85,12 +89,12 @@ The errors that I had avoided on my [planning stage](#plan-the-project) are **ja
 ### Ensure Smooth User Experience
 **Where could the user experience break and how did I prevent those?**
 
-There are some place that the user experience (UX) could break and they could either due to **API connection** issue or **app responsiveness issue**.
+There are some places that the user experience (UX) could break and they could either be due to **API connection** issue or **app responsiveness issue**.
 
 #### API Connection Issues
 1. **No internet is connected**
 <br>
-If users use the service while no internet is available, Retrofit will show a toast message saying that host is not found.  The message makes no sense to average users, neither does it suggest any solution to them.
+If users use the service while no internet is available, Retrofit will show a toast message saying that host is not found.  This message makes no sense to average users, neither does it suggest any solution to them.
 <br><br>
 Therefore, I add connectivity check on my API client.  If users attempt to use the service without internet access, the app will show them a toast message that asking them to connect to internet.
 
@@ -105,7 +109,7 @@ When this condition hits, failure() method is called, and I display a toast mess
 <br>
 This question seems trivial at first, but it has a big impact on UX, and I spent quite a bit of time to make it feel smooth.
 <br><br>
-First of all, no API call will be made if the user type in spaces.  The first API call for autocompletes will be sent when users type in their first character.  The list view will only be visible if there are autocompletes available, otherwise it should be invisible.  New API call will be made every time users type in 2 addition characters.
+First of all, no API call will be made if the user type in spaces.  The first API call for autocompletes will be sent when users type in their first character.  The list view will only be visible if there are autocompletes available, otherwise it should be invisible.  New API call will be made every time when 2 addition characters are typed.
 
 2. **Clear the old autocompletes before populate the new ones**
 <br>
@@ -121,7 +125,7 @@ When users press "search", if their query is contained on the autocompletes, sho
 ### Potential Improvements
 **What other improvements can be made?**
 
-#### Checked List
+#### Done List
 1. **Instruction on Search Widget**
 <br>
 When user first click on the search widget, its hint will show a message suggesting what user should type.
@@ -161,9 +165,6 @@ I will add it to the production version (if it ever makes to that stage), but fo
 **what’s the result of this statement, `System.out.println(-1/9);` and why?**
 
 The answer is `0`, because an integer divide by an integer returns an integer.  Since `-1/9` is not an integer, it will be round up (`ceil`) to the next closest integer, which is `0` in this case.
-
-
-
 
 
 ## Run the app
