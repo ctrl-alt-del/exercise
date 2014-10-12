@@ -14,7 +14,6 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.htexercise.ApiClient;
 import com.htexercise.PlaceDetailsActivity;
 import com.htexercise.R;
 import com.htexercise.model.BundleExtraConstant;
@@ -23,6 +22,7 @@ import com.htexercise.model.PlaceAutocomplete;
 import com.htexercise.model.PlaceDetail;
 import com.htexercise.model.Prediction;
 import com.htexercise.model.Result;
+import com.htexercise.network.ApiClient;
 import com.htexercise.view.PlaceSearchViewInterface;
 
 public class PlaceSearchViewPresenter {

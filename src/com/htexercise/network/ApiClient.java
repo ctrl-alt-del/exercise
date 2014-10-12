@@ -1,4 +1,4 @@
-package com.htexercise;
+package com.htexercise.network;
 
 import retrofit.RestAdapter;
 
