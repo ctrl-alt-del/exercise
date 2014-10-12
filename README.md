@@ -3,6 +3,7 @@ HT Exercise
 This is an exercise to use Google Place API through Retrofit REST Client and other libraries.
 
 * [Before Coding](#before-coding)
+  * [Project Outlines](#project-outlines)
 * [Coding Style](#coding-style)
 * [Questions](#questions)
   * [Error Handling](#error-handling)
@@ -11,15 +12,16 @@ This is an exercise to use Google Place API through Retrofit REST Client and oth
 
 
 ## Before coding
-Before starting a project, I tend to think about how it would fit into the project management triangle, namely the scope, cost, and time.
+Before starting a project, I estimate its scope, cost and time, which also known as the [Project Management Triangle](http://en.wikipedia.org/wiki/Project_management_triangle).
 
-It comes down to several questions:
+### Project Outlines
+I ask myself these questions to outline a project.
 
-1. **What am I coding?**
+1. **What are the requirements? / What am I coding?**
 <br>
-Namely, the requirements.  In this case, I am coding an app that has ActionBar, use SearchView, and interact with Google Place Autocomplete and Place Details APIs.
+I am coding an **Android app** that has **ActionBar**, use **SearchView**, and interact with internet through **Google Place Autocomplete** and **Google Place Details** APIs.
 
-2. **Who am I coding for?**
+2. **What is the scope of the project? / Who are the users? / Who am I coding for?**
 <br>
 This question is to make myself clear about who are going to be the users of my app.  It is a tricky question because it also determines the scope and work hours of the project.
 <br><br>
