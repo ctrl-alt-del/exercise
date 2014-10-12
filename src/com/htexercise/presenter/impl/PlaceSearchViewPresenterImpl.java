@@ -46,8 +46,11 @@ implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 
 	private List<Prediction> places;
 	private ListView placeSearchListView;
-
-	private int queryIncrement = 0;
+	
+	/* 
+	 * make sure there is only one keystrokesCount 
+	 * */
+	private static int keystrokesCount = 0;
 
 
 	public PlaceSearchViewPresenterImpl(PlaceSearchViewInterface placeSearchViewInterface) {
@@ -93,21 +96,18 @@ implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 		this.showListView();
 		
 		/*
-		 * Selecting an item that already on the list .
+		 * Selecting an item that already on the list.
 		 * */
 		if (places.contains(query)) {
 			return true;
 		}
 
 		/*
-		 * textCount determines how frequent an API call should be fired
-		 * and the StringUtils.isBlank(query) make sure that it won't 
-		 * request for an API call with empty, "", " " query
+		 * keystrokesCount determines how frequent an API call should be fired.
 		 * */
-		if (queryIncrement < 2) {
+		if (keystrokesCount < 2) {
 			// Not trigger API call
-			queryIncrement++;
-			//			Toast.makeText(getBaseContext(), "onQueryTextChange -> " + query, Toast.LENGTH_SHORT).show();
+			keystrokesCount++;
 		} else {
 			// Trigger API call
 			
@@ -138,9 +138,9 @@ implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 			});
 			
 			/*
-			 * reset the counter 
+			 * reset keystrokesCount 
 			 * */
-			queryIncrement = 0;
+			keystrokesCount = 0;
 		}
 		return true;
 	}

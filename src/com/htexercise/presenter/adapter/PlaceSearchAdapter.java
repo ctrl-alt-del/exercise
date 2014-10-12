@@ -75,7 +75,6 @@ public class PlaceSearchAdapter extends BaseAdapter {
 		holder.description.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(activity, prediction.getDescription() + " is clicked...", Toast.LENGTH_SHORT).show();
 
 				SearchView searchView = placeSearchViewInterface.getSearchView();
 				if (searchView != null) {
@@ -88,8 +87,8 @@ public class PlaceSearchAdapter extends BaseAdapter {
 
 					@Override
 					public void failure(RetrofitError retrofitError) {
-						//						Toast.makeText(getBaseContext(), "Connection Issue, please try again", Toast.LENGTH_SHORT).show();
-						Toast.makeText(activity, retrofitError.getMessage(), Toast.LENGTH_LONG).show();
+						Toast.makeText(activity, "Connection Issue, please try again", Toast.LENGTH_SHORT).show();
+						// Toast.makeText(activity, retrofitError.getMessage(), Toast.LENGTH_LONG).show();
 					}
 
 					@Override
