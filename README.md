@@ -4,6 +4,7 @@ This is an exercise to use Google Place API through Retrofit REST Client and oth
 
 * [Before Coding](#before-coding)
   * [Project Outlines](#project-outlines)
+  * [Technology Involved](#technology-involoved)
 * [Coding Style](#coding-style)
 * [Questions](#questions)
   * [Error Handling](#error-handling)
@@ -28,6 +29,8 @@ I am coding an **Android app** that has **ActionBar**, use **SearchView**, and i
 This is a broad question, but in this contrast, my main interest of asking this question is to know what is the minimum SDK version that I should support.
 <br><br>
 I consult the [Google Dashboard](https://developer.android.com/about/dashboards/index.html#Platform), which tells me that **87.9%** of the circulating Android devices are using SDK 15 or above.  Therefore, I believe it is reasonable for me to set the minimum SDK version of this project to **15**.
+<br><br>
+If the requirement specifies the minimum SDK version to be lower than 15, I can implement the [**actionbarsherlock extension**](http://actionbarsherlock.com/) to meet the requirement.
 
 3. **How much time do I have? / When is the deadline?**
 <br>
@@ -36,6 +39,13 @@ Few hours after work for 3 weekdays, 1 Saturday and 0.5 Sunday, which sums up ap
 4. **What are my resources?**
 <br>
 Any helps, references and libraries available online.
+
+### Technology Involved
+Learning is a lifetime job, it is inevitable, or in fact, normal to encounter some new knowledge on a new project.  Therefore, I spent some time to learn and understand about them, such as their official documents and online tutorials, before starting to code.
+
+The full list is attached under the [Reference](#reference) section.
+
+
 
 ## Coding Style
 To keep code easier to read, I avoid using large if else if statement by keeping if blocks small.
@@ -70,6 +80,22 @@ make the row higher so it is easier to press
 
 
 
+
+## Reference
+1. [Creating a Search Interface](http://developer.android.com/guide/topics/search/search-dialog.html)
+1. [Adding Custom Suggestions](http://developer.android.com/guide/topics/search/adding-custom-suggestions.html)
+1. [Adding an Action View](http://developer.android.com/guide/topics/ui/actionbar.html#ActionView)
+1. [Adding Search Functionality](https://developer.android.com/training/search/index.html)
+1. [Iconography](http://developer.android.com/design/style/iconography.html)
+1. [Android Actionbar Search widget implementation In ListFragment](http://stackoverflow.com/questions/9556795/android-actionbar-search-widget-implementation-in-listfragment)
+1. [An MVP Pattern for Android](http://magenic.com/BlogArchive/AnMVPPatternforAndroid)
+1. [MVP for Android: how to organize the presentation layer](http://antonioleiva.com/mvp-android)
+1. [Nationwide Android Application Development & Integration](http://magenic.com/Services/MobileEnterpriseDevelopment/AndroidApplicationDevelopment)
+1. [Using Model-View-Presenter (MVP) pattern in Compact Framework](http://breathingtech.com/2009/using-model-view-presenter-mvp-pattern-in-compact-framework)
+1. [Model View Presenter (MVP) design pattern and data binding](http://www.c-sharpcorner.com/UploadFile/john_charles/model-view-presenter-mvp-design-pattern-and-data-binding)
+1. [Google Place Autocomplete API](https://developers.google.com/places/documentation/autocomplete)
+1. [Google Place Details API](https://developers.google.com/places/documentation/details)
+1. [BEST PRACTICES FOR CONSUMING APIS ON ANDROID](http://engineering.meetme.com/2014/03/best-practices-for-consuming-apis-on-android)
 
 
 ## Appendix A: Development Environment and Conventions
