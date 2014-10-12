@@ -25,11 +25,3 @@ gen/
 # Ignore gradle files
 .gradle/
 build/
-
-# Libraries on libs folder
-libs/
-
-# Except libs/android-support-v13.jar
-!libs/android-support-v4.jar
-!libs/android-support-v7-appcompat.jar
-!libs/android-support-v13.jar
