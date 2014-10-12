@@ -97,20 +97,15 @@ implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 		this.showListView();
 
 		/*
-		 * Selecting an item that already on the list.
-		 * */
-		if (places.contains(query)) {
-			return true;
-		}
-
-		/*
 		 * keystrokesCount determines how frequent an API call should be fired.
 		 * In this case, API request will be made on every three keystrokes
-		 * except the case that query.length() == 1, a.k.a the first letter.
+		 * except the case that query.trim().length() == 1, a.k.a the first letter.
+		 * 
+		 * trim() is used to prevent user inputs, such as "  s", "s " and etc.
 		 * 
 		 * query.length() == 0 has been eliminated by condition prior to this one. 
 		 * */
-		if (keystrokesCount < 2 && query.length() > 1) {
+		if (keystrokesCount < 2 && query.trim().length() > 1) {
 			// Not trigger API call
 			keystrokesCount++;
 		} else {
@@ -157,7 +152,7 @@ implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 	@Override
 	public boolean onQueryTextSubmit(String query) {
 		/*
-		 * Ignore user action on submitting empty query.
+		 * User action on submitting empty query.
 		 * */
 		if (StringUtils.isBlank(query)) {
 			Toast.makeText(activity, "type something maybe?", Toast.LENGTH_SHORT).show();
