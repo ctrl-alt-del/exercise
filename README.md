@@ -10,12 +10,13 @@ This is an exercise to use Google Place API through Retrofit REST Client and oth
   * [Error Handling](#error-handling)
   * [Ensure Smooth User Experience](#ensure-smooth-user-experience)
   * [Potential Improvements](#potential-improvements)
+* [Installation](#installation)
 * [Appendix A: Development Environment and Conventions](#appendix-a-development-environment-and-conventions)
 * [Appendix B: Get Ready for Development](#appendix-b-get-ready-for-development)
 
 
 ## Before coding
-Before starting a project, I estimate its scope, cost and time, which also known as the [Project Management Triangle](http://en.wikipedia.org/wiki/Project_management_triangle).
+Before starting a project, I estimate its scope, cost and time, a.k.a the [Project Management Triangle](http://en.wikipedia.org/wiki/Project_management_triangle).
 
 ### Project Outlines
 I ask myself these questions to outline a project.
@@ -73,7 +74,7 @@ This error came to me when I refactor some class names, yet the AndroidManifest.
 <br>
 Declare the permission in AndroidManifest.xml solves it.
 
-4. **API call failure due to varies reasons (401,404,500)**
+4. **API call failure due to varies reasons (401, 404, 500)**
 <br>
 Use the failure() method of Retrofit and display a message to ask the user to try again later.
 
@@ -81,14 +82,31 @@ The errors that I had avoided on my [planning stage](#plan-the-project) are **ja
 
 
 ### Ensure Smooth User Experience
-Where could the user experience break? How will you prevent this?
+**Where could the user experience break and how did I prevent those?**
+
+There are some place that the user experience could break and they could either due to API connection issue or app responsiveness issue.
+
+#### API Connection Issues
+1. **No internet is connected**
+<br>
+If users use the service while no internet is available, Retrofit will show a toast message saying that host is not found.  The message makes no sense to average users, neither does it suggest any solution to them.
+<br><br>
+Therefore, I add connectivity check on my API client.  If users attempt to use the service without internet access, the app will show them a toast message that asking them to connect to internet.
+
+2. **API call failure**
+<br>
+As I mentioned in above, it is an error that I had encountered.  Solving it is pretty straightforward thanks to the Retrofit's default failure() method.
+<br><br>
+When this condition hits, failure() method is called, and I display a toast message to ask the users to try again later.
+
+#### App Responsiveness Issues
 
 
 
 
 
-## Potential Improvements
-What other improvements can be made?
+### Potential Improvements
+**What other improvements can be made?**
 
 When user clicks on the suggestion, the text on search widget will be changed to it accordingly
 
@@ -98,6 +116,8 @@ make the row higher so it is easier to press
 
 To keep code easier to read, I avoid using large if else if statement by keeping if blocks small.
 
+
+## Installation
 
 ## Reference
 1. [Creating a Search Interface](http://developer.android.com/guide/topics/search/search-dialog.html)
