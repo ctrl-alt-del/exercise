@@ -9,6 +9,8 @@ This is an exercise to use Google Place API through Retrofit REST Client and oth
   * [Error Handling](#error-handling)
   * [Ensure Smooth User Experience](#ensure-smooth-user-experience)
   * [Potential Improvements](#potential-improvements)
+* [Appendix A: Development Environment and Conventions](#appendix-a-development-environment-and-conventions)
+* [Appendix B: Get Ready for Development](#appendix-b-get-ready-for-development)
 
 
 ## Before coding
@@ -23,19 +25,17 @@ I am coding an **Android app** that has **ActionBar**, use **SearchView**, and i
 
 2. **What is the scope of the project? / Who are the users? / Who am I coding for?**
 <br>
-This question is to make myself clear about who are going to be the users of my app.  It is a tricky question because it also determines the scope and work hours of the project.
+This is a broad question, but in this contrast, my main interest of asking this question is to know what is the minimum SDK version that I should support.
 <br><br>
-One tricky part is to decide the minimum SDK version I should support.  To minimize works on dealing with support libraries, I would like to set the minimum SDK version as high as reasonable.
-<br><br>
-Therefore, I consult the [Google Dashboard](https://developer.android.com/about/dashboards/index.html#Platform), which tells me that **87.9%** of the circulating Android devices are using SDK 15 or above, and so I set my minimum SDK version to 15.
+I consult the [Google Dashboard](https://developer.android.com/about/dashboards/index.html#Platform), which tells me that **87.9%** of the circulating Android devices are using SDK 15 or above.  Therefore, I believe it is reasonable for me to set the minimum SDK version of this project to **15**.
 
-3. **When is the deadline?**
+3. **How much time do I have? / When is the deadline?**
 <br>
-few hours after work on 3 weekdays, 1 Saturday and 0.5 Sunday, where sums up approximately **24 workable hours**.
+Few hours after work for 3 weekdays, 1 Saturday and 0.5 Sunday, which sums up approximately **24 workable hours**.
 
-4. **What resources do I have?**
+4. **What are my resources?**
 <br>
-Any helps, references and libraries that I can find online.
+Any helps, references and libraries available online.
 
 ## Coding Style
 To keep code easier to read, I avoid using large if else if statement by keeping if blocks small.
