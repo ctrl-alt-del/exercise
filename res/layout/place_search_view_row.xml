@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+    android:layout_marginLeft="5sp"
+    android:layout_marginRight="5sp" >
+
+        <ImageView
+            android:id="@+id/place_autocomplete_row_thumbnail"
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_geocode" />
+
+        <TextView
+            android:id="@+id/place_autocomplete_row_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5sp"
+            android:layout_toRightOf="@+id/place_autocomplete_row_thumbnail"
+            android:gravity="start|center"
+            android:text="@string/address"
+            android:textColor="#505050"
+            android:textSize="26sp" />
+
+</RelativeLayout>

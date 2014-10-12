@@ -3,6 +3,10 @@
     <color name="transparent">#00000000</color>
     <color name="transparent_dark">#3C545454</color>
     <color name="transparent_deep_dark">#DD000000</color>
+    <color name="transparent_silver">#CCD9D9D9</color>
+    <color name="transparent_blue">#BB95B3D7</color>
+    <color name="transparent_yellow">#DDF9DB59</color>
+    
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
     
@@ -11,5 +15,7 @@
     
     <color name="silver">#D9D9D9</color>
     <color name="silver_dark">#7F7F7F</color>
+    
+    
     
 </resources>

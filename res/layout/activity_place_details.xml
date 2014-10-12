@@ -9,8 +9,8 @@
             android:layout_width="match_parent"
             android:layout_height="280sp"
             android:layout_alignParentTop="true"
-            android:background="@drawable/ic_launcher"
-            android:scaleType="centerInside" />
+            android:background="@drawable/ic_action_search_holo_light"
+            android:scaleType="fitCenter" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:text="Address"
+                android:text="@string/address"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="16sp" />
@@ -40,9 +40,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5sp"
                 android:gravity="center"
-                android:text="Location"
+                android:text="@string/location"
                 android:textColor="@color/silver"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/place_details_place_id"
@@ -52,9 +52,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5sp"
                 android:gravity="center"
-                android:text="Place ID"
+                android:text="@string/place_id"
                 android:textColor="@color/silver"
-                android:textSize="10sp" />
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/place_details_cancel"
@@ -66,7 +66,7 @@
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:background="@color/transparent"
-                android:text="Cancel" />
+                android:text="@string/cancel" />
         </RelativeLayout>
 
 </RelativeLayout>

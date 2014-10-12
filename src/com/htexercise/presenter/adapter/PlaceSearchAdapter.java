@@ -62,7 +62,7 @@ public class PlaceSearchAdapter extends BaseAdapter {
 
 			holder = new PlaceAutocompleteRowViewHolder();
 
-			convertView = View.inflate(this.activity, R.layout.place_autocomplete_row, null);
+			convertView = View.inflate(this.activity, R.layout.place_search_view_row, null);
 			holder.description = (TextView) convertView.findViewById(R.id.place_autocomplete_row_description);
 
 			convertView.setTag(holder);
