@@ -34,7 +34,7 @@
         </activity>
          <activity
             android:name="com.htexercise.view.impl.PlaceDetailsViewImpl"
-            android:label="PlaceDetailsView"
+            android:label="PlaceDetailsViewImpl"
             android:screenOrientation="portrait"
             android:theme="@style/PopupTheme" >
             <intent-filter>
