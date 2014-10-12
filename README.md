@@ -6,7 +6,6 @@ This is an exercise to use Google Place API through Retrofit REST Client and oth
   * [Project Outlines](#project-outlines)
   * [Learn about the technology involved](#learn-about-the-technology-involoved)
   * [Plan the project](#plan-the-project)
-* [Coding Style](#coding-style)
 * [Questions](#questions)
   * [Error Handling](#error-handling)
   * [Ensure Smooth User Experience](#ensure-smooth-user-experience)
@@ -47,35 +46,45 @@ Learning is a lifetime job, it is inevitable, or in fact, normal to encounter so
 The full list is attached under the [Reference](#reference) section.
 
 ### Plan the project
-Model View Presenter (MVP) design pattern requires a bit of time to get it perfect.  Since this project is relatively small, I decided to go with the **plan-code-improve** approach.
+Model View Presenter (MVP) design pattern requires a bit of time to get it perfect.  Since this project is relatively small and time sensitive, I decided to go with the **plan-code-improve** approach.
 
-I first planned out the project's rough structure, such as relationship between classes, which interface has what methods and etc, on paper.
+I first planned out the project's rough structure, such as relationship between classes, interfaces and methods, on paper.
 
-I quickly craft the structure of API client using Retrofit to get the communication part done because it is a bit easier and less ambiguity.
+I quickly crafted the structure of API client using Retrofit to get the communication part done because it is a bit easier and has less ambiguity.
 
-I then started focus on getting an working prototype, connect it with my API client, and perform iterative improvements.
-
-
-## Coding Style
-To keep code easier to read, I avoid using large if else if statement by keeping if blocks small.
+I then started focus on getting an working prototype, connect it with my API client, and perform iterative improvements to achieve MVP.
 
 
 ## Questions
 ### Error Handling
-What error conditions will you encounter? How should these be handled?
+**What error conditions did I encounter and how did I handled them?**
 
-java.lang.NullPointerException
-java.lang.ClassNotFoundException
+Since I planned my steps before starting to code, I only encounter few error conditions.
 
-Search list is not clear
+1. **Our infamous buddy: java.lang.NullPointerException**
+<br>
+I traced the log to see where did it come from, then I either fixed the code structure to make sure it will never be null if null is not allowed, or I add if condition to handle the response if null is permitted in the situation.
 
-Missing Internet Access Permission
+2. **java.lang.ClassNotFoundException**
+<br>
+This error came to me when I refactor some class names, yet the AndroidManifest.xml doesn't get updated automatically or at least properly.  Therefore, I just correct the class names on AndroidManifest.xml manually.
 
-forget to instantiate the presenter on the view
+3. **Missing Internet Access Permission**
+<br>
+Declare the permission in AndroidManifest.xml solves it.
+
+4. **API call failure due to varies reasons (401,404,500)**
+<br>
+Use the failure() method of Retrofit and display a message to ask the user to try again later.
+
+The errors that I had avoided on my [planning stage](#plan-the-project) are **java.lang.IndexOutOfBoundsException** and **java.lang.ClassCastException**.
 
 
 ### Ensure Smooth User Experience
 Where could the user experience break? How will you prevent this?
+
+
+
 
 
 ## Potential Improvements
@@ -87,7 +96,7 @@ When user first click on the search widget, its hint will show a message suggest
 
 make the row higher so it is easier to press
 
-
+To keep code easier to read, I avoid using large if else if statement by keeping if blocks small.
 
 
 ## Reference
