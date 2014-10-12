@@ -84,7 +84,7 @@ The errors that I had avoided on my [planning stage](#plan-the-project) are **ja
 ### Ensure Smooth User Experience
 **Where could the user experience break and how did I prevent those?**
 
-There are some place that the user experience could break and they could either due to API connection issue or app responsiveness issue.
+There are some place that the user experience (UX) could break and they could either due to **API connection** issue or **app responsiveness issue**.
 
 #### API Connection Issues
 1. **No internet is connected**
@@ -100,40 +100,65 @@ As I mentioned in above, it is an error that I had encountered.  Solving it is p
 When this condition hits, failure() method is called, and I display a toast message to ask the users to try again later.
 
 #### App Responsiveness Issues
+1. **When to send API request for autocompletes**
+<br>
+This question seems trivial at first, but it has a big impact on UX, and I spent quite a bit of time to make it feel smooth.
+<br><br>
+First of all, no API call will be made if the user type in spaces.  The first API call for autocompletes will be sent when users type in their first character.  The list view will only be visible if there are autocompletes available, otherwise it should be invisible.  New API call will be made every time users type in 2 addition characters.
 
+2. **Clear the old autocompletes before populate the new ones**
+<br>
+Once the new autocompletes arrive, clear the list and populate the new ones.
 
-
+3. **What should happen when clicking on "search" on keyboard?**
+<br>
+This is one of those minor places that would make user feel weird if the app doesn't response.
+<br><br>
+When users press "search", if their query is contained on the autocompletes, show the details of that query, otherwise, show place details of the first one on the autocomplete list.
 
 
 ### Potential Improvements
 **What other improvements can be made?**
 
-When user clicks on the suggestion, the text on search widget will be changed to it accordingly
-
+#### Checked List
+1. **Instruction on Search Widget**
+<br>
 When user first click on the search widget, its hint will show a message suggesting what user should type.
 
-make the row higher so it is easier to press
+2. **Auto fill up query**
+<br>
+When user clicks on the autocomplete, the query on search widget will be changed to it accordingly
 
-To keep code easier to read, I avoid using large if else if statement by keeping if blocks small.
+3. **Proper height of autocomplete list**
+<br>
+Make the row higher so that it is easier to press.
+
+
+#### Todo List
+
+1. **Prevent potential double tapping issue**
+<br>
+Although I have not seen it when I debug the app, I know it could happen and it is something that I would like to improve if I have more time.
 
 
 ## Installation
+Just user the run button of Eclipse IDE to build and run the app, all libraries are provided under `libs` folder.  I decided to not to use Gradle this time because of the scope of this project.
 
 ## Reference
 1. [Creating a Search Interface](http://developer.android.com/guide/topics/search/search-dialog.html)
-1. [Adding Custom Suggestions](http://developer.android.com/guide/topics/search/adding-custom-suggestions.html)
-1. [Adding an Action View](http://developer.android.com/guide/topics/ui/actionbar.html#ActionView)
-1. [Adding Search Functionality](https://developer.android.com/training/search/index.html)
-1. [Iconography](http://developer.android.com/design/style/iconography.html)
-1. [Android Actionbar Search widget implementation In ListFragment](http://stackoverflow.com/questions/9556795/android-actionbar-search-widget-implementation-in-listfragment)
-1. [An MVP Pattern for Android](http://magenic.com/BlogArchive/AnMVPPatternforAndroid)
-1. [MVP for Android: how to organize the presentation layer](http://antonioleiva.com/mvp-android)
-1. [Nationwide Android Application Development & Integration](http://magenic.com/Services/MobileEnterpriseDevelopment/AndroidApplicationDevelopment)
-1. [Using Model-View-Presenter (MVP) pattern in Compact Framework](http://breathingtech.com/2009/using-model-view-presenter-mvp-pattern-in-compact-framework)
-1. [Model View Presenter (MVP) design pattern and data binding](http://www.c-sharpcorner.com/UploadFile/john_charles/model-view-presenter-mvp-design-pattern-and-data-binding)
-1. [Google Place Autocomplete API](https://developers.google.com/places/documentation/autocomplete)
-1. [Google Place Details API](https://developers.google.com/places/documentation/details)
-1. [BEST PRACTICES FOR CONSUMING APIS ON ANDROID](http://engineering.meetme.com/2014/03/best-practices-for-consuming-apis-on-android)
+2. [Adding Custom Suggestions](http://developer.android.com/guide/topics/search/adding-custom-suggestions.html)
+3. [Adding an Action View](http://developer.android.com/guide/topics/ui/actionbar.html#ActionView)
+4. [Adding Search Functionality](https://developer.android.com/training/search/index.html)
+5. [Iconography](http://developer.android.com/design/style/iconography.html)
+6. [Android Actionbar Search widget implementation In ListFragment](http://stackoverflow.com/questions/9556795/android-actionbar-search-widget-implementation-in-listfragment)
+7. [An MVP Pattern for Android](http://magenic.com/BlogArchive/AnMVPPatternforAndroid)
+8. [MVP for Android: how to organize the presentation layer](http://antonioleiva.com/mvp-android)
+9. [Nationwide Android Application Development & Integration](http://magenic.com/Services/MobileEnterpriseDevelopment/AndroidApplicationDevelopment)
+10. [Using Model-View-Presenter (MVP) pattern in Compact Framework](http://breathingtech.com/2009/using-model-view-presenter-mvp-pattern-in-compact-framework)
+11. [Model View Presenter (MVP) design pattern and data binding](http://www.c-sharpcorner.com/UploadFile/john_charles/model-view-presenter-mvp-design-pattern-and-data-binding)
+12. [Google Place Autocomplete API](https://developers.google.com/places/documentation/autocomplete)
+13. [Google Place Details API](https://developers.google.com/places/documentation/details)
+14. [BEST PRACTICES FOR CONSUMING APIS ON ANDROID](http://engineering.meetme.com/2014/03/best-practices-for-consuming-apis-on-android)
 
 
 ## Appendix A: Development Environment and Conventions
