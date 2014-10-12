@@ -24,6 +24,7 @@ import com.htexercise.model.PlaceDetail;
 import com.htexercise.model.Prediction;
 import com.htexercise.model.Result;
 import com.htexercise.network.ApiClient;
+import com.htexercise.network.PlaceAPIs;
 import com.htexercise.presenter.PlaceSearchViewPresenterInterface;
 import com.htexercise.presenter.adapter.PlaceSearchAdapter;
 import com.htexercise.view.PlaceSearchViewInterface;
@@ -116,12 +117,18 @@ implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 			// Trigger API call
 
 			String apiKey = activity.getResources().getString(R.string.API_KEY);
-			ApiClient.getApiClient().getPlaceAutocompletes(apiKey, query, new Callback<PlaceAutocomplete>() {
+			PlaceAPIs client = ApiClient.getApiClient(activity);
+			
+			if (client == null) {
+				return true;
+			}
+
+			client.getPlaceAutocompletes(apiKey, query, new Callback<PlaceAutocomplete>() {
 
 				@Override
 				public void failure(RetrofitError retrofitError) {
-					//					Toast.makeText(getBaseContext(), "Connection Issue, please try again", Toast.LENGTH_SHORT).show();
-					Toast.makeText(activity, retrofitError.getMessage(), Toast.LENGTH_LONG).show();
+					Toast.makeText(activity, "Connection Issue, please try again", Toast.LENGTH_SHORT).show();
+					// Toast.makeText(activity, retrofitError.getMessage(), Toast.LENGTH_LONG).show();
 				}
 
 				@Override
@@ -185,7 +192,14 @@ implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 		}
 		
 		String apiKey = activity.getResources().getString(R.string.API_KEY);
-		ApiClient.getApiClient().getPlaceDetails(apiKey, prediction.getPlaceId(), new Callback<PlaceDetail>() {
+		
+		PlaceAPIs client = ApiClient.getApiClient(activity);
+		
+		if (client == null) {
+			return true;
+		}
+
+		client.getPlaceDetails(apiKey, prediction.getPlaceId(), new Callback<PlaceDetail>() {
 
 			@Override
 			public void failure(RetrofitError retrofitError) {

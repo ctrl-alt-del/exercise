@@ -13,6 +13,7 @@ import com.htexercise.model.PlaceDetail;
 import com.htexercise.model.Prediction;
 import com.htexercise.model.Result;
 import com.htexercise.network.ApiClient;
+import com.htexercise.network.PlaceAPIs;
 import com.htexercise.view.PlaceSearchViewInterface;
 import com.htexercise.view.impl.PlaceDetailViewImpl;
 
@@ -83,7 +84,13 @@ public class PlaceSearchAdapter extends BaseAdapter {
 
 				// make API request with prediction.getPlaceId()
 				String apiKey = activity.getResources().getString(R.string.API_KEY);
-				ApiClient.getApiClient().getPlaceDetails(apiKey, prediction.getPlaceId(), new Callback<PlaceDetail>() {
+				PlaceAPIs client = ApiClient.getApiClient(activity);
+				
+				if (client == null) {
+					return;
+				}
+
+				client.getPlaceDetails(apiKey, prediction.getPlaceId(), new Callback<PlaceDetail>() {
 
 					@Override
 					public void failure(RetrofitError retrofitError) {
