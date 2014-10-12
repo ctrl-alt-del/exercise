@@ -24,6 +24,7 @@ import com.htexercise.model.PlaceDetail;
 import com.htexercise.model.Prediction;
 import com.htexercise.model.Result;
 import com.htexercise.network.ApiClient;
+import com.htexercise.presenter.PlaceSearchViewPresenterInterface;
 import com.htexercise.presenter.adapter.PlaceSearchAdapter;
 import com.htexercise.view.PlaceSearchViewInterface;
 import com.htexercise.view.impl.PlaceDetailsViewImpl;
@@ -34,7 +35,8 @@ import com.htexercise.view.impl.PlaceDetailsViewImpl;
  * @since 2014-10-11
  * @version 1.0
  * */
-public class PlaceSearchViewPresenterImpl implements OnQueryTextListener {
+public class PlaceSearchViewPresenterImpl 
+implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 
 	private PlaceSearchViewInterface placeSearchViewInterface;
 	private PlaceSearchAdapter placeAutocompleteAdapter;
@@ -59,6 +61,7 @@ public class PlaceSearchViewPresenterImpl implements OnQueryTextListener {
 
 	}
 
+	@Override
 	public PlaceSearchAdapter getPlaceSearchAdapter() {
 		return this.placeAutocompleteAdapter;
 	}
