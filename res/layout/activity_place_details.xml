@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="300sp"
-    tools:context="com.htexercise.view.impl.PlaceDetailsView" >
+    tools:context="com.htexercise.view.impl.PlaceDetailsViewImpl" >
 
         <ImageView
             android:id="@+id/place_details_image"

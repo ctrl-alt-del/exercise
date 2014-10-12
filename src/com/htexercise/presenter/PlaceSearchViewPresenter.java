@@ -26,7 +26,7 @@ import com.htexercise.model.Result;
 import com.htexercise.network.ApiClient;
 import com.htexercise.presenter.adapter.PlaceSearchAdapter;
 import com.htexercise.view.PlaceSearchViewInterface;
-import com.htexercise.view.impl.PlaceDetailsView;
+import com.htexercise.view.impl.PlaceDetailsViewImpl;
 
 public class PlaceSearchViewPresenter implements OnQueryTextListener {
 
@@ -167,7 +167,7 @@ public class PlaceSearchViewPresenter implements OnQueryTextListener {
 
 					Result result = placeDetail.getResult();
 
-					Intent placeDetialsIntent = new Intent(activity, PlaceDetailsView.class);
+					Intent placeDetialsIntent = new Intent(activity, PlaceDetailsViewImpl.class);
 					placeDetialsIntent.putExtra(
 							BundleExtraConstant.PLACE_DETAILS_FORMATTED_ADDRESS.getDesc(), 
 							result.getFormattedAddress());

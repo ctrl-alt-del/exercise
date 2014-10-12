@@ -17,7 +17,7 @@ import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
 
-public class PlaceSearchView extends Activity implements PlaceSearchViewInterface, OnQueryTextListener {
+public class PlaceSearchViewImpl extends Activity implements PlaceSearchViewInterface, OnQueryTextListener {
 
 	private ListView placeSearchListView;
 

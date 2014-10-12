@@ -1,14 +1,14 @@
 package com.htexercise.view;
 
 import com.htexercise.presenter.PlaceSearchViewPresenter;
-import com.htexercise.view.impl.PlaceSearchView;
+import com.htexercise.view.impl.PlaceSearchViewImpl;
 
 import android.app.Activity;
 import android.widget.ListView;
 import android.widget.SearchView;
 
 /**
- * Interface for {@link PlaceSearchView} to interact with 
+ * Interface for {@link PlaceSearchViewImpl} to interact with 
  * {@link PlaceSearchViewPresenter}
  * 
  * @since 2014-10-11

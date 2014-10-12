@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class PlaceDetailsView extends Activity 
+public class PlaceDetailsViewImpl extends Activity 
 implements OnClickListener, PlaceDetailViewInterface {
 
 	private PlaceDetailViewPresenter placeDetailViewPresenter;

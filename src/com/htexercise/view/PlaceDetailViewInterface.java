@@ -1,12 +1,12 @@
 package com.htexercise.view;
 
 import com.htexercise.presenter.PlaceDetailViewPresenter;
-import com.htexercise.view.impl.PlaceDetailsView;
+import com.htexercise.view.impl.PlaceDetailsViewImpl;
 
 import android.os.Bundle;
 
 /**
- * Interface for {@link PlaceDetailsView} to interact with 
+ * Interface for {@link PlaceDetailsViewImpl} to interact with 
  * {@link PlaceDetailViewPresenter}
  * 
  * @since 2014-10-11
