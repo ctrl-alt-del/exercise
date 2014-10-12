@@ -1,4 +1,4 @@
-package com.htexercise.presenter;
+package com.htexercise.presenter.impl;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -34,7 +34,7 @@ import com.htexercise.view.impl.PlaceDetailsViewImpl;
  * @since 2014-10-11
  * @version 1.0
  * */
-public class PlaceSearchViewPresenter implements OnQueryTextListener {
+public class PlaceSearchViewPresenterImpl implements OnQueryTextListener {
 
 	private PlaceSearchViewInterface placeSearchViewInterface;
 	private PlaceSearchAdapter placeAutocompleteAdapter;
@@ -48,7 +48,7 @@ public class PlaceSearchViewPresenter implements OnQueryTextListener {
 	private int queryIncrement = 0;
 
 
-	public PlaceSearchViewPresenter(PlaceSearchViewInterface placeSearchViewInterface) {
+	public PlaceSearchViewPresenterImpl(PlaceSearchViewInterface placeSearchViewInterface) {
 
 		this.placeSearchViewInterface = placeSearchViewInterface;
 		this.activity = this.placeSearchViewInterface.getActivity();

@@ -1,7 +1,7 @@
 package com.htexercise.view.impl;
 
 import com.htexercise.R;
-import com.htexercise.presenter.PlaceDetailViewPresenter;
+import com.htexercise.presenter.impl.PlaceDetailViewPresenterImpl;
 import com.htexercise.view.PlaceDetailViewInterface;
 
 import android.view.View;
@@ -21,7 +21,7 @@ import android.widget.TextView;
 public class PlaceDetailsViewImpl extends Activity 
 implements OnClickListener, PlaceDetailViewInterface {
 
-	private PlaceDetailViewPresenter placeDetailViewPresenter;
+	private PlaceDetailViewPresenterImpl placeDetailViewPresenter;
 	
 	private TextView addressTextView;
 	private TextView locationTextView;
@@ -40,7 +40,7 @@ implements OnClickListener, PlaceDetailViewInterface {
 		this.placeIdTextView = (TextView) this.findViewById(R.id.place_details_place_id);
 		this.cancel = (Button) this.findViewById(R.id.place_details_cancel);
 		
-		this.placeDetailViewPresenter = new PlaceDetailViewPresenter(this);
+		this.placeDetailViewPresenter = new PlaceDetailViewPresenterImpl(this);
 		this.placeDetailViewPresenter.setAddressOnView();
 		this.placeDetailViewPresenter.setLocationOnView();
 		this.placeDetailViewPresenter.setPlaceIdOnView();

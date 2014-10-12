@@ -2,7 +2,7 @@ package com.htexercise.view.impl;
 
 
 import com.htexercise.R;
-import com.htexercise.presenter.PlaceSearchViewPresenter;
+import com.htexercise.presenter.impl.PlaceSearchViewPresenterImpl;
 import com.htexercise.view.PlaceSearchViewInterface;
 
 import android.app.Activity;
@@ -27,14 +27,14 @@ public class PlaceSearchViewImpl extends Activity implements PlaceSearchViewInte
 
 	private ListView placeSearchListView;
 	private SearchView searchView;
-	private PlaceSearchViewPresenter presenter;
+	private PlaceSearchViewPresenterImpl presenter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
 
-		this.presenter = new PlaceSearchViewPresenter(this);
+		this.presenter = new PlaceSearchViewPresenterImpl(this);
 
 		this.placeSearchListView = (ListView) findViewById(R.id.place_autocomplete_listview);
 		this.placeSearchListView.setVisibility(View.INVISIBLE);

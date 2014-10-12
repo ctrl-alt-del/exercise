@@ -1,4 +1,4 @@
-package com.htexercise.presenter;
+package com.htexercise.presenter.impl;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -13,12 +13,12 @@ import com.htexercise.view.PlaceDetailViewInterface;
  * @since 2014-10-11
  * @version 1.0
  * */
-public class PlaceDetailViewPresenter {
+public class PlaceDetailViewPresenterImpl {
 
 	private PlaceDetailViewInterface placeDetailViewInterface;
 	private Bundle bundleExtras;
 
-	public PlaceDetailViewPresenter(PlaceDetailViewInterface placeDetailViewInterface) {
+	public PlaceDetailViewPresenterImpl(PlaceDetailViewInterface placeDetailViewInterface) {
 		this.placeDetailViewInterface = placeDetailViewInterface;
 		this.bundleExtras = this.placeDetailViewInterface.getBundleExtras();
 	}
