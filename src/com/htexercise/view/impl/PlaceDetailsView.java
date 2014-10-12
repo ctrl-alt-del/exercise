@@ -1,5 +1,6 @@
-package com.htexercise;
+package com.htexercise.view.impl;
 
+import com.htexercise.R;
 import com.htexercise.presenter.PlaceDetailViewPresenter;
 import com.htexercise.view.PlaceDetailViewInterface;
 

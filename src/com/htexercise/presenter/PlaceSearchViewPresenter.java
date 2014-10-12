@@ -1,5 +1,6 @@
 package com.htexercise.presenter;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -12,9 +13,9 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
 
-import com.htexercise.PlaceDetailsView;
 import com.htexercise.R;
 import com.htexercise.model.BundleExtraConstant;
 import com.htexercise.model.Location;
@@ -23,11 +24,14 @@ import com.htexercise.model.PlaceDetail;
 import com.htexercise.model.Prediction;
 import com.htexercise.model.Result;
 import com.htexercise.network.ApiClient;
+import com.htexercise.presenter.adapter.PlaceSearchAdapter;
 import com.htexercise.view.PlaceSearchViewInterface;
+import com.htexercise.view.impl.PlaceDetailsView;
 
-public class PlaceSearchViewPresenter {
+public class PlaceSearchViewPresenter implements OnQueryTextListener {
 
 	private PlaceSearchViewInterface placeSearchViewInterface;
+	private PlaceSearchAdapter placeAutocompleteAdapter;
 	private Activity activity;
 	
 	private SearchView searchView;
@@ -42,38 +46,56 @@ public class PlaceSearchViewPresenter {
 
 		this.placeSearchViewInterface = placeSearchViewInterface;
 		this.activity = this.placeSearchViewInterface.getActivity();
+		this.placeAutocompletes = new LinkedList<Prediction>();
+		
+		this.placeAutocompleteAdapter = new PlaceSearchAdapter(
+				this.placeSearchViewInterface, placeAutocompletes);
 
 	}
 
-	public void setQueryTextChangeAction(String query) {
+	public PlaceSearchAdapter getPlaceSearchAdapter() {
+		return this.placeAutocompleteAdapter;
+	}
+	
+	@Override
+	public boolean onQueryTextChange(String query) {
 
 		this.searchView = placeSearchViewInterface.getSearchView();
-		this.placeAutocompletes = placeSearchViewInterface.getPlaceAutocompletes();
 
-		/**
-		 * When the search widget is first clicked, update the hint on 
-		 * the widget to tell users what to do
+		/*
+		 * When the search widget is first clicked or filled with space(s), 
+		 * update the hint on the widget to tell users what to do. It makes 
+		 * sure that request with "" or " " query won't be sent.
 		 * */
-		if (query.length() == 0) {
+		if (StringUtils.isBlank(query)) {
+			/*
+			 * hide the list view because nothing is there to display
+			 * */
+			this.hideListView();
+			
 			this.searchView.setQueryHint("Enter your place here");
-			hideListView();
-			return;
+			return true;
 		}
 
-		showListView();
-		/**
-		 * Selecting an item that already on the list 
+		/*
+		 * As long as there is something on the search widget, the list
+		 * view can be showed.
+		 * */
+		this.showListView();
+		
+		/*
+		 * Selecting an item that already on the list .
 		 * */
 		if (placeAutocompletes.contains(query)) {
-			return;
+			return true;
 		}
 
-		/**
+		/*
 		 * textCount determines how frequent an API call should be fired
 		 * and the StringUtils.isBlank(query) make sure that it won't 
 		 * request for an API call with empty, "", " " query
 		 * */
-		if (StringUtils.isBlank(query) || queryIncrement < 2) {
+		if (queryIncrement < 2) {
 			// Not trigger API call
 			queryIncrement++;
 			//			Toast.makeText(getBaseContext(), "onQueryTextChange -> " + query, Toast.LENGTH_SHORT).show();
@@ -97,23 +119,31 @@ public class PlaceSearchViewPresenter {
 					for (Prediction prediction : placeAutocomplete.getPredictions()) {
 						placeAutocompletes.add(prediction);
 					}
-
-					placeSearchViewInterface.updateListView();
+					
+					/*
+					 * notify the {@link PlaceSearchView} to update its ListView
+					 * */
+					placeAutocompleteAdapter.notifyDataSetChanged();
 				}
 
 			});
-
+			
+			/*
+			 * reset the counter 
+			 * */
 			queryIncrement = 0;
 		}
+		return true;
 	}
 
-	public void setQueryTextSubmitAction(String query) {
+	@Override
+	public boolean onQueryTextSubmit(String query) {
 		/**
 		 * Ignore user action on submitting empty query.
 		 * */
 		if (StringUtils.isBlank(query)) {
 			Toast.makeText(activity, "type something maybe?", Toast.LENGTH_SHORT).show();
-			return;
+			return true;
 		}
 
 
@@ -156,9 +186,8 @@ public class PlaceSearchViewPresenter {
 
 			});
 		}
+		return true;
 	}
-
-
 
 	private void showListView() {
 		this.placeAutocompletesListView = placeSearchViewInterface.getListView();

@@ -1,10 +1,7 @@
 package com.htexercise.view;
 
-import java.util.List;
-
-import com.htexercise.PlaceSearchView;
-import com.htexercise.model.Prediction;
 import com.htexercise.presenter.PlaceSearchViewPresenter;
+import com.htexercise.view.impl.PlaceSearchView;
 
 import android.app.Activity;
 import android.widget.ListView;
@@ -20,9 +17,7 @@ import android.widget.SearchView;
 public interface PlaceSearchViewInterface {
 	
 	public ListView getListView();
-	public void updateListView();
     public Activity getActivity();
     public SearchView getSearchView();
-    public List<Prediction> getPlaceAutocompletes();
     
 }

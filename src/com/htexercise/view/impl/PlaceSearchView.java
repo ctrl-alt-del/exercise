@@ -1,11 +1,8 @@
-package com.htexercise;
+package com.htexercise.view.impl;
 
-import java.util.LinkedList;
-import java.util.List;
 
-import com.htexercise.model.Prediction;
+import com.htexercise.R;
 import com.htexercise.presenter.PlaceSearchViewPresenter;
-import com.htexercise.presenter.adapter.PlaceSearchAdapter;
 import com.htexercise.view.PlaceSearchViewInterface;
 
 import android.app.Activity;
@@ -22,13 +19,10 @@ import android.widget.Toast;
 
 public class PlaceSearchView extends Activity implements PlaceSearchViewInterface, OnQueryTextListener {
 
-	private ListView placeAutocompletesListView;
-	private List<Prediction> placeAutocompletes;
+	private ListView placeSearchListView;
 
 	private SearchView searchView;
 	private PlaceSearchViewPresenter presenter;
-	private PlaceSearchAdapter placeAutocompleteAdapter;
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +31,9 @@ public class PlaceSearchView extends Activity implements PlaceSearchViewInterfac
 
 		this.presenter = new PlaceSearchViewPresenter(this);
 
-		this.placeAutocompletes = new LinkedList<Prediction>();
-
-		this.placeAutocompleteAdapter = new PlaceSearchAdapter(
-				this, placeAutocompletes);
-
-		this.placeAutocompletesListView = (ListView) findViewById(R.id.place_autocomplete_listview);
-		this.placeAutocompletesListView.setVisibility(View.INVISIBLE);
-		this.placeAutocompletesListView.setAdapter(this.placeAutocompleteAdapter);
+		this.placeSearchListView = (ListView) findViewById(R.id.place_autocomplete_listview);
+		this.placeSearchListView.setVisibility(View.INVISIBLE);
+		this.placeSearchListView.setAdapter(this.presenter.getPlaceSearchAdapter());
 
 	}
 
@@ -91,28 +80,17 @@ public class PlaceSearchView extends Activity implements PlaceSearchViewInterfac
 
 	@Override 
 	public boolean onQueryTextChange(String query) {
-		this.presenter.setQueryTextChangeAction(query);
-		return true; 
+		return this.presenter.onQueryTextChange(query);
 	}
 
 	@Override
 	public boolean onQueryTextSubmit(String query) {
-		this.presenter.setQueryTextSubmitAction(query);
-		return true;
+		return this.presenter.onQueryTextSubmit(query);
 	}
 
 	@Override
 	public ListView getListView() {
-		return this.placeAutocompletesListView;
+		return this.placeSearchListView;
 	}
 
-	@Override
-	public List<Prediction> getPlaceAutocompletes() {
-		return this.placeAutocompletes;
-	}
-
-	@Override
-	public void updateListView() {
-		this.placeAutocompleteAdapter.notifyDataSetChanged();
-	}
 }

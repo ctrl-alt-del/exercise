@@ -6,7 +6,6 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-import com.htexercise.PlaceDetailsView;
 import com.htexercise.R;
 import com.htexercise.model.BundleExtraConstant;
 import com.htexercise.model.Location;
@@ -15,6 +14,7 @@ import com.htexercise.model.Prediction;
 import com.htexercise.model.Result;
 import com.htexercise.network.ApiClient;
 import com.htexercise.view.PlaceSearchViewInterface;
+import com.htexercise.view.impl.PlaceDetailsView;
 
 import android.app.Activity;
 import android.content.Intent;

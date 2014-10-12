@@ -1,7 +1,7 @@
 package com.htexercise.view;
 
-import com.htexercise.PlaceDetailsView;
 import com.htexercise.presenter.PlaceDetailViewPresenter;
+import com.htexercise.view.impl.PlaceDetailsView;
 
 import android.os.Bundle;
 
