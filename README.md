@@ -2,7 +2,15 @@ HT Exercise
 ===========
 This is an exercise to use Google Place API through Retrofit REST Client and other libraries.
 
-## Before getting start to code...
+* [Before Coding](#before-coding)
+* [Coding Style](#coding-style)
+* [Questions](#questions)
+  * [Error Handling](#error-handling)
+  * [Ensure Smooth User Experience](#ensure-smooth-user-experience)
+  * [Potential Improvements](#potential-improvements)
+
+
+## Before coding
 Before starting a project, I tend to think about how it would fit into the project management triangle, namely the scope, cost, and time.
 
 It comes down to several questions:
@@ -31,15 +39,35 @@ Any helps, references and libraries that I can find online.
 To keep code easier to read, I avoid using large if else if statement by keeping if blocks small.
 
 
-## Improve user experience
+## Questions
+### Error Handling
+What error conditions will you encounter? How should these be handled?
+
+java.lang.NullPointerException
+java.lang.ClassNotFoundException
+
+Search list is not clear
+
+Missing Internet Access Permission
+
+forget to instantiate the presenter on the view
+
+
+### Ensure Smooth User Experience
+Where could the user experience break? How will you prevent this?
+
+
+## Potential Improvements
+What other improvements can be made?
+
 When user clicks on the suggestion, the text on search widget will be changed to it accordingly
 
 When user first click on the search widget, its hint will show a message suggesting what user should type.
 
+make the row higher so it is easier to press
 
-## Issues encountered
-NullPointerException
-java.lang.ClassNotFoundException
+
+
 
 
 ## Appendix A: Development Environment and Conventions
