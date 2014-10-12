@@ -4,13 +4,14 @@ This is an exercise to use Google Place API through Retrofit REST Client and oth
 
 * [Before Coding](#before-coding)
   * [Project Outlines](#project-outlines)
-  * [Learn about the technology involved](#learn-about-the-technology-involoved)
+  * [Learn about the technology involved](#learn-about-the-technology-involved)
   * [Plan the project](#plan-the-project)
 * [Questions](#questions)
   * [Error Handling](#error-handling)
   * [Ensure Smooth User Experience](#ensure-smooth-user-experience)
   * [Potential Improvements](#potential-improvements)
 * [Installation](#installation)
+* [Reference](#reference)
 * [Appendix A: Development Environment and Conventions](#appendix-a-development-environment-and-conventions)
 * [Appendix B: Get Ready for Development](#appendix-b-get-ready-for-development)
 
@@ -179,6 +180,7 @@ Just user the run button of Eclipse IDE to build and run the app, all libraries 
 
 ## Appendix B: Get Ready for Development
 ### Setup Eclipse IDE
+I have tried using the Android ADT bundle, but its eclipse always says it is broken and unable to start.  Therefore, I just went with the standard [eclipse](http://www.eclipse.org/downloads/packages/eclipse-ide-java-developers/lunasr1).
 
 ### Setup Android SDK
 First of all, we need to setup Android SDK on you machine.  we can follow my instruction [here](https://github.com/ctrl-alt-del/devenv#android-sdk) to setup the Android SDK on Mac.
