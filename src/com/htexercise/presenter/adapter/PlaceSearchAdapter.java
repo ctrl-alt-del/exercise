@@ -1,4 +1,4 @@
-package com.htexercise.presenter;
+package com.htexercise.presenter.adapter;
 
 import java.util.List;
 
@@ -6,14 +6,14 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-import com.htexercise.ApiClient;
-import com.htexercise.PlaceDetailsActivity;
+import com.htexercise.PlaceDetailsView;
 import com.htexercise.R;
 import com.htexercise.model.BundleExtraConstant;
 import com.htexercise.model.Location;
 import com.htexercise.model.PlaceDetail;
 import com.htexercise.model.Prediction;
 import com.htexercise.model.Result;
+import com.htexercise.network.ApiClient;
 import com.htexercise.view.PlaceSearchViewInterface;
 
 import android.app.Activity;
@@ -93,12 +93,11 @@ public class PlaceSearchAdapter extends BaseAdapter {
 					}
 
 					@Override
-					public void success(PlaceDetail placeDetail,
-							Response response) {
+					public void success(PlaceDetail placeDetail, Response response) {
 
 						Result result = placeDetail.getResult();
 
-						Intent placeDetialsIntent = new Intent(activity, PlaceDetailsActivity.class);
+						Intent placeDetialsIntent = new Intent(activity, PlaceDetailsView.class);
 						placeDetialsIntent.putExtra(
 								BundleExtraConstant.PLACE_DETAILS_FORMATTED_ADDRESS.getDesc(), 
 								result.getFormattedAddress());

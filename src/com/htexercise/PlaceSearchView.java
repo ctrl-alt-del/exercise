@@ -4,8 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.htexercise.model.Prediction;
-import com.htexercise.presenter.PlaceSearchAdapter;
 import com.htexercise.presenter.PlaceSearchViewPresenter;
+import com.htexercise.presenter.adapter.PlaceSearchAdapter;
 import com.htexercise.view.PlaceSearchViewInterface;
 
 import android.app.Activity;
