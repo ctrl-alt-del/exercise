@@ -33,7 +33,7 @@
                 android:resource="@xml/searchable" />
         </activity>
          <activity
-            android:name=".PlaceDetailsActivity"
+            android:name=".PlaceDetailsView"
             android:label="PlaceDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/PopupTheme" >

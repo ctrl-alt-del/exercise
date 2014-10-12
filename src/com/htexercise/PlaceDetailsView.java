@@ -1,8 +1,6 @@
 package com.htexercise;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.htexercise.model.BundleExtraConstant;
+import com.htexercise.view.PlaceDetailViewInterface;
 
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,7 +10,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class PlaceDetailsActivity extends Activity implements OnClickListener {
+public class PlaceDetailsView extends Activity 
+implements OnClickListener, PlaceDetailViewInterface {
 
 	private TextView addressTextView;
 	private TextView locationTextView;
@@ -32,24 +31,6 @@ public class PlaceDetailsActivity extends Activity implements OnClickListener {
 		this.cancel = (Button) this.findViewById(R.id.place_details_cancel);
 		
 		this.cancel.setOnClickListener(this);
-		
-		Bundle extras = getIntent().getExtras();
-		  if (extras != null) {
-		   String address= extras.getString(BundleExtraConstant.PLACE_DETAILS_FORMATTED_ADDRESS.getDesc());
-		   if (!StringUtils.isBlank(address)) {
-		       this.addressTextView.setText(address);
-		   }        
-		   
-		   String location= extras.getString(BundleExtraConstant.PLACE_DETAILS_LOCATION.getDesc());
-		   if (!StringUtils.isBlank(location)) {
-		       this.locationTextView.setText(location);
-		   }      
-		   
-		   String placeId= extras.getString(BundleExtraConstant.PLACE_DETAILS_PLACE_ID.getDesc());
-		   if (!StringUtils.isBlank(placeId)) {
-		       this.placeIdTextView.setText(placeId);
-		   }      
-		}
 	}
 
 	@Override
@@ -60,5 +41,25 @@ public class PlaceDetailsActivity extends Activity implements OnClickListener {
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public Bundle getBundleExtras() {
+		return this.getIntent().getExtras();
+	}
+
+	@Override
+	public void setAddress(String address) {
+		this.addressTextView.setText(address);
+	}
+
+	@Override
+	public void setLocation(String location) {
+		this.locationTextView.setText(location);		
+	}
+
+	@Override
+	public void setPlaceId(String placeId) {
+		this.placeIdTextView.setText(placeId);		
 	}
 }

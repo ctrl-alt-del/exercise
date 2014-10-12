@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.htexercise.PlaceDetailsActivity;
+import com.htexercise.PlaceDetailsView;
 import com.htexercise.R;
 import com.htexercise.model.BundleExtraConstant;
 import com.htexercise.model.Location;
@@ -137,7 +137,7 @@ public class PlaceSearchViewPresenter {
 
 					Result result = placeDetail.getResult();
 
-					Intent placeDetialsIntent = new Intent(activity, PlaceDetailsActivity.class);
+					Intent placeDetialsIntent = new Intent(activity, PlaceDetailsView.class);
 					placeDetialsIntent.putExtra(
 							BundleExtraConstant.PLACE_DETAILS_FORMATTED_ADDRESS.getDesc(), 
 							result.getFormattedAddress());
