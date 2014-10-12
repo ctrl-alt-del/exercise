@@ -33,12 +33,12 @@
                 android:resource="@xml/searchable" />
         </activity>
          <activity
-            android:name="com.htexercise.view.impl.PlaceDetailsViewImpl"
-            android:label="PlaceDetailsViewImpl"
+            android:name="com.htexercise.view.impl.PlaceDetailViewImpl"
+            android:label="PlaceDetailViewImpl"
             android:screenOrientation="portrait"
             android:theme="@style/PopupTheme" >
             <intent-filter>
-                <action android:name="com.htexercise.view.impl.PlaceDetailsViewImpl" />
+                <action android:name="com.htexercise.view.impl.PlaceDetailViewImpl" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

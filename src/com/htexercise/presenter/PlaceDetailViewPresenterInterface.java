@@ -1,9 +1,7 @@
-package com.htexercise.view;
+package com.htexercise.presenter;
 
 import com.htexercise.presenter.impl.PlaceDetailViewPresenterImpl;
 import com.htexercise.view.impl.PlaceDetailViewImpl;
-
-import android.os.Bundle;
 
 /**
  * Interface for {@link PlaceDetailViewImpl} to interact with 
@@ -12,11 +10,10 @@ import android.os.Bundle;
  * @since 2014-10-11
  * @version 1.0
  * */
-public interface PlaceDetailViewInterface {
+public interface PlaceDetailViewPresenterInterface {
 	
-    public Bundle getBundleExtras();
-    public void setAddress(String address);
-    public void setLocation(String location);
-    public void setPlaceId(String placeId);
+	public void setAddressOnView();
+	public void setLocationOnView();
+	public void setPlaceIdOnView();
     
 }

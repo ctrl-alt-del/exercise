@@ -27,7 +27,7 @@ import com.htexercise.network.ApiClient;
 import com.htexercise.presenter.PlaceSearchViewPresenterInterface;
 import com.htexercise.presenter.adapter.PlaceSearchAdapter;
 import com.htexercise.view.PlaceSearchViewInterface;
-import com.htexercise.view.impl.PlaceDetailsViewImpl;
+import com.htexercise.view.impl.PlaceDetailViewImpl;
 
 /**
  * PlaceSearchViewPresenter class
@@ -39,13 +39,13 @@ public class PlaceSearchViewPresenterImpl
 implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 
 	private PlaceSearchViewInterface placeSearchViewInterface;
-	private PlaceSearchAdapter placeAutocompleteAdapter;
+	private PlaceSearchAdapter placeSearchAdapter;
 	private Activity activity;
 	
 	private SearchView searchView;
 
-	private List<Prediction> placeAutocompletes;
-	private ListView placeAutocompletesListView;
+	private List<Prediction> places;
+	private ListView placeSearchListView;
 
 	private int queryIncrement = 0;
 
@@ -54,16 +54,16 @@ implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 
 		this.placeSearchViewInterface = placeSearchViewInterface;
 		this.activity = this.placeSearchViewInterface.getActivity();
-		this.placeAutocompletes = new LinkedList<Prediction>();
+		this.places = new LinkedList<Prediction>();
 		
-		this.placeAutocompleteAdapter = new PlaceSearchAdapter(
-				this.placeSearchViewInterface, placeAutocompletes);
+		this.placeSearchAdapter = new PlaceSearchAdapter(
+				this.placeSearchViewInterface, places);
 
 	}
 
 	@Override
 	public PlaceSearchAdapter getPlaceSearchAdapter() {
-		return this.placeAutocompleteAdapter;
+		return this.placeSearchAdapter;
 	}
 	
 	@Override
@@ -95,7 +95,7 @@ implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 		/*
 		 * Selecting an item that already on the list .
 		 * */
-		if (placeAutocompletes.contains(query)) {
+		if (places.contains(query)) {
 			return true;
 		}
 
@@ -124,15 +124,15 @@ implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 				public void success(PlaceAutocomplete placeAutocomplete,
 						Response response) {
 
-					placeAutocompletes.clear();
+					places.clear();
 					for (Prediction prediction : placeAutocomplete.getPredictions()) {
-						placeAutocompletes.add(prediction);
+						places.add(prediction);
 					}
 					
 					/*
 					 * notify the {@link PlaceSearchView} to update its ListView
 					 * */
-					placeAutocompleteAdapter.notifyDataSetChanged();
+					placeSearchAdapter.notifyDataSetChanged();
 				}
 
 			});
@@ -156,10 +156,10 @@ implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 		}
 
 
-		if (placeAutocompletes != null && placeAutocompletes.size() > 0) {
+		if (places != null && places.size() > 0) {
 
 			// get the place_id of the first item on the autocomplete list and make API request
-			Prediction prediction = placeAutocompletes.get(0);
+			Prediction prediction = places.get(0);
 			String apiKey = activity.getResources().getString(R.string.API_KEY);
 
 			ApiClient.getApiClient().getPlaceDetails(apiKey, prediction.getPlaceId(), new Callback<PlaceDetail>() {
@@ -176,7 +176,7 @@ implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 
 					Result result = placeDetail.getResult();
 
-					Intent placeDetialsIntent = new Intent(activity, PlaceDetailsViewImpl.class);
+					Intent placeDetialsIntent = new Intent(activity, PlaceDetailViewImpl.class);
 					placeDetialsIntent.putExtra(
 							BundleExtraConstant.PLACE_DETAILS_FORMATTED_ADDRESS.getDesc(), 
 							result.getFormattedAddress());
@@ -199,12 +199,12 @@ implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 	}
 
 	private void showListView() {
-		this.placeAutocompletesListView = placeSearchViewInterface.getListView();
-		this.placeAutocompletesListView.setVisibility(View.VISIBLE);
+		this.placeSearchListView = placeSearchViewInterface.getListView();
+		this.placeSearchListView.setVisibility(View.VISIBLE);
 	}
 
 	private void hideListView() {
-		this.placeAutocompletesListView = placeSearchViewInterface.getListView();
-		this.placeAutocompletesListView.setVisibility(View.INVISIBLE);
+		this.placeSearchListView = placeSearchViewInterface.getListView();
+		this.placeSearchListView.setVisibility(View.INVISIBLE);
 	}
 }

@@ -18,7 +18,7 @@ import android.widget.TextView;
  * @since 2014-10-11
  * @version 1.0
  * */
-public class PlaceDetailsViewImpl extends Activity 
+public class PlaceDetailViewImpl extends Activity 
 implements OnClickListener, PlaceDetailViewInterface {
 
 	private PlaceDetailViewPresenterImpl placeDetailViewPresenter;

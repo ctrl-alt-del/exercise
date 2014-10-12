@@ -14,7 +14,7 @@ import com.htexercise.model.Prediction;
 import com.htexercise.model.Result;
 import com.htexercise.network.ApiClient;
 import com.htexercise.view.PlaceSearchViewInterface;
-import com.htexercise.view.impl.PlaceDetailsViewImpl;
+import com.htexercise.view.impl.PlaceDetailViewImpl;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -97,7 +97,7 @@ public class PlaceSearchAdapter extends BaseAdapter {
 
 						Result result = placeDetail.getResult();
 
-						Intent placeDetialsIntent = new Intent(activity, PlaceDetailsViewImpl.class);
+						Intent placeDetialsIntent = new Intent(activity, PlaceDetailViewImpl.class);
 						placeDetialsIntent.putExtra(
 								BundleExtraConstant.PLACE_DETAILS_FORMATTED_ADDRESS.getDesc(), 
 								result.getFormattedAddress());
