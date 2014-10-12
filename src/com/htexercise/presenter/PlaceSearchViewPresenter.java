@@ -28,6 +28,12 @@ import com.htexercise.presenter.adapter.PlaceSearchAdapter;
 import com.htexercise.view.PlaceSearchViewInterface;
 import com.htexercise.view.impl.PlaceDetailsViewImpl;
 
+/**
+ * PlaceSearchViewPresenter class
+ * 
+ * @since 2014-10-11
+ * @version 1.0
+ * */
 public class PlaceSearchViewPresenter implements OnQueryTextListener {
 
 	private PlaceSearchViewInterface placeSearchViewInterface;

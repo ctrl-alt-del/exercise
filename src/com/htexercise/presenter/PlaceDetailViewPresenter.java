@@ -7,6 +7,12 @@ import android.os.Bundle;
 import com.htexercise.model.BundleExtraConstant;
 import com.htexercise.view.PlaceDetailViewInterface;
 
+/**
+ * PlaceDetailViewPresenter class
+ * 
+ * @since 2014-10-11
+ * @version 1.0
+ * */
 public class PlaceDetailViewPresenter {
 
 	private PlaceDetailViewInterface placeDetailViewInterface;

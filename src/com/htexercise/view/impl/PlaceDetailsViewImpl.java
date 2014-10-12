@@ -12,6 +12,12 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * PlaceDetailsViewImpl class
+ * 
+ * @since 2014-10-11
+ * @version 1.0
+ * */
 public class PlaceDetailsViewImpl extends Activity 
 implements OnClickListener, PlaceDetailViewInterface {
 

@@ -17,10 +17,15 @@ import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
 
+/**
+ * PlaceSearchViewImpl class
+ * 
+ * @since 2014-10-11
+ * @version 1.0
+ * */
 public class PlaceSearchViewImpl extends Activity implements PlaceSearchViewInterface, OnQueryTextListener {
 
 	private ListView placeSearchListView;
-
 	private SearchView searchView;
 	private PlaceSearchViewPresenter presenter;
 
@@ -39,7 +44,7 @@ public class PlaceSearchViewImpl extends Activity implements PlaceSearchViewInte
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
+
 		getMenuInflater().inflate(R.menu.search, menu);
 
 		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
@@ -48,6 +53,7 @@ public class PlaceSearchViewImpl extends Activity implements PlaceSearchViewInte
 		 * Only works on SDK 11 or higher 
 		 * */
 		this.searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+		
 		this.searchView.setOnQueryTextListener(this);
 		this.searchView.setQueryRefinementEnabled(true);
 		this.searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
