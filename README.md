@@ -10,7 +10,7 @@ This is an exercise to use Google Place API through Retrofit REST Client and oth
   * [Error Handling](#error-handling)
   * [Ensure Smooth User Experience](#ensure-smooth-user-experience)
   * [Potential Improvements](#potential-improvements)
-* [Installation](#installation)
+* [Run the app](#run-the-app)
 * [Reference](#reference)
 * [Appendix A: Development Environment and Conventions](#appendix-a-development-environment-and-conventions)
 * [Appendix B: Get Ready for Development](#appendix-b-get-ready-for-development)
@@ -134,6 +134,14 @@ When user clicks on the autocomplete, the query on search widget will be changed
 <br>
 Make the row higher so that it is easier to press.
 
+4. **Thumbnail on autocomplete list**
+<br>
+I added a thumbnail to the list view of autocomplete to make it less boring in comparing with the plain text version.  This thumbnail can later be used to fill up with iconic picture of each place.
+
+5. **Image on the background of place details**
+<br>
+Serve as the same purpose as the thumbnail on the autocomplete list.  It is an attempt to give user an straightforward view on where they are looking at.
+
 
 #### Todo List
 
@@ -141,9 +149,27 @@ Make the row higher so that it is easier to press.
 <br>
 Although I have not seen it when I debug the app, I know it could happen and it is something that I would like to improve if I have more time.
 
+2. **List view of autocomplete change its color according to date time**
+<br>
+The list is always with a yellow gradient now, but I wish to make it changing color according to the date time.
 
-## Installation
-Just user the run button of Eclipse IDE to build and run the app, all libraries are provided under `libs` folder.  I decided to not to use Gradle this time because of the scope of this project.
+3. **Add Google logo to the end of the list**
+<br>
+I will add it to the production version (if it ever makes to that stage), but for debugging and testing purpose, I will skip it for now :)
+
+### Extra Credit Question
+**what’s the result of this statement, `System.out.println(-1/9);` and why?**
+
+The answer is `0`, because an integer divide by an integer returns an integer.  Since `-1/9` is not an integer, it will be round up (`ceil`) to the next closest integer, which is `0` in this case.
+
+
+
+
+
+## Run the app
+First of all, add you Google API key to `API_KEY` on `/res/values/strings.xml` and enable Place API service on you Google console.
+
+Afterwards, just use the run button of Eclipse IDE to build and run the app, all libraries are provided under `libs` folder.  I decided to not to use Gradle this time because of the scope of this project.
 
 ## Reference
 1. [Creating a Search Interface](http://developer.android.com/guide/topics/search/search-dialog.html)
