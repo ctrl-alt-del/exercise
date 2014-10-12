@@ -4,7 +4,8 @@ This is an exercise to use Google Place API through Retrofit REST Client and oth
 
 * [Before Coding](#before-coding)
   * [Project Outlines](#project-outlines)
-  * [Technology Involved](#technology-involoved)
+  * [Learn about the technology involved](#learn-about-the-technology-involoved)
+  * [Plan the project](#plan-the-project)
 * [Coding Style](#coding-style)
 * [Questions](#questions)
   * [Error Handling](#error-handling)
@@ -26,7 +27,7 @@ I am coding an **Android app** that has **ActionBar**, use **SearchView**, and i
 
 2. **What is the scope of the project? / Who are the users? / Who am I coding for?**
 <br>
-This is a broad question, but in this contrast, my main interest of asking this question is to know what is the minimum SDK version that I should support.
+This is a broad question, but in this contrast, my main interest of asking this question is to know **what is the minimum SDK version that I should support**.
 <br><br>
 I consult the [Google Dashboard](https://developer.android.com/about/dashboards/index.html#Platform), which tells me that **87.9%** of the circulating Android devices are using SDK 15 or above.  Therefore, I believe it is reasonable for me to set the minimum SDK version of this project to **15**.
 <br><br>
@@ -40,11 +41,19 @@ Few hours after work for 3 weekdays, 1 Saturday and 0.5 Sunday, which sums up ap
 <br>
 Any helps, references and libraries available online.
 
-### Technology Involved
+### Learn about the technology involved
 Learning is a lifetime job, it is inevitable, or in fact, normal to encounter some new knowledge on a new project.  Therefore, I spent some time to learn and understand about them, such as their official documents and online tutorials, before starting to code.
 
 The full list is attached under the [Reference](#reference) section.
 
+### Plan the project
+Model View Presenter (MVP) design pattern requires a bit of time to get it perfect.  Since this project is relatively small, I decided to go with the **plan-code-improve** approach.
+
+I first planned out the project's rough structure, such as relationship between classes, which interface has what methods and etc, on paper.
+
+I quickly craft the structure of API client using Retrofit to get the communication part done because it is a bit easier and less ambiguity.
+
+I then started focus on getting an working prototype, connect it with my API client, and perform iterative improvements.
 
 
 ## Coding Style
