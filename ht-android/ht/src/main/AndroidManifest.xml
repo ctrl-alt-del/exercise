@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.htexercise"
+    package="com.ht"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.htexercise.view.impl.PlaceSearchViewImpl"
+            android:name=".view.impl.PlaceSearchViewImpl"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +34,7 @@
                 android:resource="@xml/searchable" />
         </activity>
          <activity
-            android:name="com.htexercise.view.impl.PlaceDetailViewImpl"
+            android:name=".view.impl.PlaceDetailViewImpl"
             android:label="PlaceDetailViewImpl"
             android:screenOrientation="portrait"
             android:theme="@style/PopupTheme" >

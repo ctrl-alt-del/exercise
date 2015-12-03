@@ -25,3 +25,5 @@ gen/
 # Ignore gradle files
 .gradle/
 build/
+
+.idea/
