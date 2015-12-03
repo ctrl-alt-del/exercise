@@ -1,10 +1,6 @@
 package com.ht.view.impl;
 
 
-import com.ht.R;
-import com.ht.presenter.impl.PlaceSearchViewPresenterImpl;
-import com.ht.view.PlaceSearchViewInterface;
-
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
@@ -16,6 +12,10 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
+
+import com.ht.R;
+import com.ht.presenter.impl.PlaceSearchViewPresenterImpl;
+import com.ht.view.PlaceSearchViewInterface;
 
 /**
  * PlaceSearchViewImpl class

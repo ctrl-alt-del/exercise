@@ -1,9 +1,9 @@
 package com.ht.view;
 
+import android.os.Bundle;
+
 import com.ht.presenter.impl.PlaceDetailViewPresenterImpl;
 import com.ht.view.impl.PlaceDetailViewImpl;
-
-import android.os.Bundle;
 
 /**
  * Interface for {@link PlaceDetailViewImpl} to interact with 

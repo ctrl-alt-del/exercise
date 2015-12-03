@@ -1,8 +1,9 @@
 package com.ht.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
-import com.google.gson.annotations.SerializedName;
 
 public class Prediction {
 

@@ -1,13 +1,5 @@
 package com.ht.presenter.impl;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
@@ -29,6 +21,15 @@ import com.ht.presenter.PlaceSearchViewPresenterInterface;
 import com.ht.presenter.adapter.PlaceSearchAdapter;
 import com.ht.view.PlaceSearchViewInterface;
 import com.ht.view.impl.PlaceDetailViewImpl;
+
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * PlaceSearchViewPresenter class

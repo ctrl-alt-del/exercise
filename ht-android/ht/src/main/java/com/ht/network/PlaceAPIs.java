@@ -1,11 +1,11 @@
 package com.ht.network;
 
-import retrofit.http.GET;
-import retrofit.http.Query;
-import retrofit.Callback;
-
 import com.ht.model.PlaceAutocomplete;
 import com.ht.model.PlaceDetail;
+
+import retrofit.Callback;
+import retrofit.http.GET;
+import retrofit.http.Query;
 
 public interface PlaceAPIs {
 

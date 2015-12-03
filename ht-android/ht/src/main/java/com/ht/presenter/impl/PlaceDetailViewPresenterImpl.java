@@ -1,12 +1,12 @@
 package com.ht.presenter.impl;
 
-import org.apache.commons.lang3.StringUtils;
-
 import android.os.Bundle;
 
 import com.ht.model.BundleExtraConstant;
 import com.ht.presenter.PlaceDetailViewPresenterInterface;
 import com.ht.view.PlaceDetailViewInterface;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * PlaceDetailViewPresenter class

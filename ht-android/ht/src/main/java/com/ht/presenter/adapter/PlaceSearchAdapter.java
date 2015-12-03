@@ -1,10 +1,13 @@
 package com.ht.presenter.adapter;
 
-import java.util.List;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import android.app.Activity;
+import android.content.Intent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.SearchView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ht.R;
 import com.ht.model.BundleExtraConstant;
@@ -17,14 +20,11 @@ import com.ht.network.PlaceAPIs;
 import com.ht.view.PlaceSearchViewInterface;
 import com.ht.view.impl.PlaceDetailViewImpl;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
+import java.util.List;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class PlaceSearchAdapter extends BaseAdapter {
 

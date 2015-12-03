@@ -1,11 +1,11 @@
 package com.ht.view;
 
-import com.ht.presenter.impl.PlaceSearchViewPresenterImpl;
-import com.ht.view.impl.PlaceSearchViewImpl;
-
 import android.app.Activity;
 import android.widget.ListView;
 import android.widget.SearchView;
+
+import com.ht.presenter.impl.PlaceSearchViewPresenterImpl;
+import com.ht.view.impl.PlaceSearchViewImpl;
 
 /**
  * Interface for {@link PlaceSearchViewImpl} to interact with 
