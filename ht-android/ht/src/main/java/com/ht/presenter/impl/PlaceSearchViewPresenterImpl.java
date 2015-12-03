@@ -2,6 +2,7 @@ package com.ht.presenter.impl;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -22,8 +23,6 @@ import com.ht.presenter.adapter.PlaceSearchAdapter;
 import com.ht.view.PlaceSearchViewInterface;
 import com.ht.view.impl.PlaceDetailViewImpl;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,69 +32,69 @@ import retrofit.client.Response;
 
 /**
  * PlaceSearchViewPresenter class
- * 
- * @since 2014-10-11
+ *
  * @version 1.0
- * */
-public class PlaceSearchViewPresenterImpl 
-implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
+ * @since 2014-10-11
+ */
+public class PlaceSearchViewPresenterImpl
+        implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 
-	private PlaceSearchViewInterface placeSearchViewInterface;
-	private PlaceSearchAdapter placeSearchAdapter;
-	private Activity activity;
+    private PlaceSearchViewInterface placeSearchViewInterface;
+    private PlaceSearchAdapter placeSearchAdapter;
+    private Activity activity;
 
-	private SearchView searchView;
+    private SearchView searchView;
 
-	private List<Prediction> places;
-	private ListView placeSearchListView;
+    private List<Prediction> places;
+    private ListView placeSearchListView;
 
-	/* 
-	 * make sure there is only one keystrokesCount 
-	 * */
-	private static int keystrokesCount = 0;
+    /*
+     * make sure there is only one keystrokesCount
+     * */
+    private static int keystrokesCount = 0;
 
 
-	public PlaceSearchViewPresenterImpl(PlaceSearchViewInterface placeSearchViewInterface) {
+    public PlaceSearchViewPresenterImpl(PlaceSearchViewInterface placeSearchViewInterface) {
 
-		this.placeSearchViewInterface = placeSearchViewInterface;
-		this.activity = this.placeSearchViewInterface.getActivity();
-		this.places = new LinkedList<Prediction>();
+        this.placeSearchViewInterface = placeSearchViewInterface;
+        this.activity = this.placeSearchViewInterface.getActivity();
+        this.places = new LinkedList<Prediction>();
 
-		this.placeSearchAdapter = new PlaceSearchAdapter(
-				this.placeSearchViewInterface, places);
+        this.placeSearchAdapter = new PlaceSearchAdapter(
+                this.placeSearchViewInterface, places);
 
-	}
+    }
 
-	@Override
-	public PlaceSearchAdapter getPlaceSearchAdapter() {
-		return this.placeSearchAdapter;
-	}
+    @Override
+    public PlaceSearchAdapter getPlaceSearchAdapter() {
+        return this.placeSearchAdapter;
+    }
 
-	@Override
-	public boolean onQueryTextChange(String query) {
+    @Override
+    public boolean onQueryTextChange(String query) {
 
-		this.searchView = placeSearchViewInterface.getSearchView();
+        this.searchView = placeSearchViewInterface.getSearchView();
 
 		/*
-		 * When the search widget is first clicked or filled with space(s), 
+         * When the search widget is first clicked or filled with space(s),
 		 * update the hint on the widget to tell users what to do. It makes 
 		 * sure that request with "" or " " query won't be sent.
 		 * */
-		if (StringUtils.isBlank(query)) {
+        if (TextUtils.isEmpty(query)) {
 			/*
 			 * hide the list view because nothing is there to display
 			 * */
-			this.hideListView();
+            this.hideListView();
 
-			this.searchView.setQueryHint("Enter your place here");
-			return true;
-		}
+            this.searchView.setQueryHint("Enter your place here");
+            return true;
+        }
 
 		/*
 		 * As long as there is something on the search widget, the list
 		 * view can be showed.
 		 * */
-		this.showListView();
+        this.showListView();
 
 		/*
 		 * keystrokesCount determines how frequent an API call should be fired.
@@ -106,137 +105,137 @@ implements PlaceSearchViewPresenterInterface, OnQueryTextListener {
 		 * 
 		 * query.length() == 0 has been eliminated by condition prior to this one. 
 		 * */
-		if (keystrokesCount < 2 && query.trim().length() > 1) {
-			// Not trigger API call
-			keystrokesCount++;
-		} else {
-			// Trigger API call
+        if (keystrokesCount < 2 && query.trim().length() > 1) {
+            // Not trigger API call
+            keystrokesCount++;
+        } else {
+            // Trigger API call
 
-			String apiKey = activity.getResources().getString(R.string.API_KEY);
-			PlaceAPIs client = ApiClient.getApiClient(activity);
-			
-			if (client == null) {
-				return true;
-			}
+            String apiKey = activity.getResources().getString(R.string.API_KEY);
+            PlaceAPIs client = ApiClient.getApiClient(activity);
 
-			client.getPlaceAutocompletes(apiKey, query, new Callback<PlaceAutocomplete>() {
+            if (client == null) {
+                return true;
+            }
 
-				@Override
-				public void failure(RetrofitError retrofitError) {
-					Toast.makeText(activity, "Connection Issue, please try again", Toast.LENGTH_SHORT).show();
-					// Toast.makeText(activity, retrofitError.getMessage(), Toast.LENGTH_LONG).show();
-				}
+            client.getPlaceAutocompletes(apiKey, query, new Callback<PlaceAutocomplete>() {
 
-				@Override
-				public void success(PlaceAutocomplete placeAutocomplete,
-						Response response) {
+                @Override
+                public void failure(RetrofitError retrofitError) {
+                    Toast.makeText(activity, "Connection Issue, please try again", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(activity, retrofitError.getMessage(), Toast.LENGTH_LONG).show();
+                }
 
-					places.clear();
-					places.addAll(placeAutocomplete.getPredictions());
+                @Override
+                public void success(PlaceAutocomplete placeAutocomplete,
+                                    Response response) {
+
+                    places.clear();
+                    places.addAll(placeAutocomplete.getPredictions());
 
 					/*
 					 * notify the {@link PlaceSearchView} to update its ListView
 					 * */
-					placeSearchAdapter.notifyDataSetChanged();
-				}
+                    placeSearchAdapter.notifyDataSetChanged();
+                }
 
-			});
+            });
 
 			/*
 			 * reset keystrokesCount 
 			 * */
-			keystrokesCount = 0;
-		}
-		return true;
-	}
+            keystrokesCount = 0;
+        }
+        return true;
+    }
 
-	@Override
-	public boolean onQueryTextSubmit(String query) {
+    @Override
+    public boolean onQueryTextSubmit(String query) {
 		/*
 		 * User action on submitting empty query.
 		 * */
-		if (StringUtils.isBlank(query)) {
-			Toast.makeText(activity, "type something maybe?", Toast.LENGTH_SHORT).show();
-			return true;
-		}
+        if (TextUtils.isEmpty(query)) {
+            Toast.makeText(activity, "type something maybe?", Toast.LENGTH_SHORT).show();
+            return true;
+        }
 
-		if (places.size() == 0) {
-			Toast.makeText(activity, "try typing more", Toast.LENGTH_SHORT).show();
-			return true;
-		}
+        if (places.size() == 0) {
+            Toast.makeText(activity, "try typing more", Toast.LENGTH_SHORT).show();
+            return true;
+        }
 		
 		/* 
 		 * If user composes a random query and press submit, it should get the 
 		 * place_id of the first item on the auto complete list unless 
 		 * the query matches one of the description of the items on the list. 
 		 * */
-		Prediction prediction = places.get(0);
-		for (Prediction place : places) {
-			if (place.getDescription().equalsIgnoreCase(query)) {
-				prediction = place;
-				break;
-			}
-		}
+        Prediction prediction = places.get(0);
+        for (Prediction place : places) {
+            if (place.getDescription().equalsIgnoreCase(query)) {
+                prediction = place;
+                break;
+            }
+        }
 		
 		/*
 		 * In case that no description on the auto complete list matches the 
 		 * query of user's submission, it will set the query to be the description 
 		 * of the first item on the auto complete list.
 		 * */
-		if (prediction == places.get(0)) {
-			searchView.setQuery(prediction.getDescription(), false);
-		}
-		
-		String apiKey = activity.getResources().getString(R.string.API_KEY);
-		
-		PlaceAPIs client = ApiClient.getApiClient(activity);
-		
-		if (client == null) {
-			return true;
-		}
+        if (prediction == places.get(0)) {
+            searchView.setQuery(prediction.getDescription(), false);
+        }
 
-		client.getPlaceDetails(apiKey, prediction.getPlaceId(), new Callback<PlaceDetail>() {
+        String apiKey = activity.getResources().getString(R.string.API_KEY);
 
-			@Override
-			public void failure(RetrofitError retrofitError) {
-				Toast.makeText(activity, "Connection Issue, please try again", Toast.LENGTH_SHORT).show();
-				// Toast.makeText(activity, retrofitError.getMessage(), Toast.LENGTH_LONG).show();
-			}
+        PlaceAPIs client = ApiClient.getApiClient(activity);
 
-			@Override
-			public void success(PlaceDetail placeDetail,
-					Response response) {
+        if (client == null) {
+            return true;
+        }
 
-				Result result = placeDetail.getResult();
+        client.getPlaceDetails(apiKey, prediction.getPlaceId(), new Callback<PlaceDetail>() {
 
-				Intent placeDetialsIntent = new Intent(activity, PlaceDetailViewImpl.class);
-				placeDetialsIntent.putExtra(
-						BundleExtraConstant.PLACE_DETAILS_FORMATTED_ADDRESS.getDesc(), 
-						result.getFormattedAddress());
+            @Override
+            public void failure(RetrofitError retrofitError) {
+                Toast.makeText(activity, "Connection Issue, please try again", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(activity, retrofitError.getMessage(), Toast.LENGTH_LONG).show();
+            }
 
-				placeDetialsIntent.putExtra(
-						BundleExtraConstant.PLACE_DETAILS_PLACE_ID.getDesc(), 
-						result.getPlaceId());
+            @Override
+            public void success(PlaceDetail placeDetail,
+                                Response response) {
 
-				Location location = result.getGeometry().getLocation();
-				placeDetialsIntent.putExtra(
-						BundleExtraConstant.PLACE_DETAILS_LOCATION.getDesc(), 
-						"Lat: " + location.getLat() + ", Lng: " + location.getLng());
+                Result result = placeDetail.getResult();
 
-				activity.startActivity(placeDetialsIntent);
-			}
+                Intent placeDetialsIntent = new Intent(activity, PlaceDetailViewImpl.class);
+                placeDetialsIntent.putExtra(
+                        BundleExtraConstant.PLACE_DETAILS_FORMATTED_ADDRESS.getDesc(),
+                        result.getFormattedAddress());
 
-		});
-		return true;
-	}
+                placeDetialsIntent.putExtra(
+                        BundleExtraConstant.PLACE_DETAILS_PLACE_ID.getDesc(),
+                        result.getPlaceId());
 
-	private void showListView() {
-		this.placeSearchListView = placeSearchViewInterface.getListView();
-		this.placeSearchListView.setVisibility(View.VISIBLE);
-	}
+                Location location = result.getGeometry().getLocation();
+                placeDetialsIntent.putExtra(
+                        BundleExtraConstant.PLACE_DETAILS_LOCATION.getDesc(),
+                        "Lat: " + location.getLat() + ", Lng: " + location.getLng());
 
-	private void hideListView() {
-		this.placeSearchListView = placeSearchViewInterface.getListView();
-		this.placeSearchListView.setVisibility(View.INVISIBLE);
-	}
+                activity.startActivity(placeDetialsIntent);
+            }
+
+        });
+        return true;
+    }
+
+    private void showListView() {
+        this.placeSearchListView = placeSearchViewInterface.getListView();
+        this.placeSearchListView.setVisibility(View.VISIBLE);
+    }
+
+    private void hideListView() {
+        this.placeSearchListView = placeSearchViewInterface.getListView();
+        this.placeSearchListView.setVisibility(View.INVISIBLE);
+    }
 }
